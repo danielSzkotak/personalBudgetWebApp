@@ -1,3 +1,28 @@
+
 body{
    background-color:whitesmoke;
+   margin: 0 auto;
+}
+
+.topBar{
+   margin: 0 auto;
+   height: 135px;
+   border-bottom-style: solid;
+   border-width: 1px;
+}
+
+.leftBar-logo{
+   display: inline-block;
+   margin-left: 250px;
+   width: 250px;
+   text-align: center;
+
+  
+}
+
+.rightBar-menu{
+   display: inline-block;
+   position: absolute;
+   right: 100px;
+   /*margin-right: 100px;*/
 }
