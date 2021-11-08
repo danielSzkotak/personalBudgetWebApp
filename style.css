@@ -1,7 +1,5 @@
 
-:root{
-
-}
+:root{}
 
 body{
    background-color:whitesmoke;
@@ -26,7 +24,7 @@ body{
 }
 
 img {
-   width: 7rem;
+   width: 6rem;
 }
 
 .logoIcon{
@@ -36,7 +34,7 @@ img {
 .logoLettering{
    float: left;
    padding-left: 10px;
-   font-size: 82px;
+   font-size: 76px;
    letter-spacing: -3px;
    color:#FF826E;
    font-family: 'Ubuntu Condensed';
@@ -58,10 +56,9 @@ img {
 
 .menu > li{
    display: inline-block;
-   padding-right: 5px;
    padding-top: 0;
    padding-bottom: 0;
-   font-size: 19px;
+   font-size: 15px;
    font-family: 'Montserrat', sans-serif;
 }
 
@@ -71,7 +68,8 @@ img {
       color: black;
       border: 2px solid #FCD770;
       border-radius: 8px;
-      padding: 10px 20px;
+      margin-left: 10px;
+      padding: 15px 25px;
       text-align: center;
       text-decoration: none;
       transition: border-color 0.5s, background-color 0.5s, color 0.5s;
@@ -92,6 +90,7 @@ img {
 }
 
 .regularMenu a:hover, a:active {
+   background-color:whitesmoke;
    border-bottom: 2px solid black;
-   padding-bottom: 0;
+   padding-bottom: 1px;
 }
