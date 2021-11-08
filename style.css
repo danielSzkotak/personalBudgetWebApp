@@ -1,28 +1,97 @@
 
+:root{
+
+}
+
 body{
    background-color:whitesmoke;
-   margin: 0 auto;
+}
+
+.container{
+   margin-left: 15vw;
+   margin-right: 15vw;
 }
 
 .topBar{
-   margin: 0 auto;
-   height: 135px;
-   border-bottom-style: solid;
-   border-width: 1px;
+   margin-top: 25px;
+   align-items: baseline;
+   position: relative;
 }
 
 .leftBar-logo{
-   display: inline-block;
-   margin-left: 250px;
-   width: 250px;
-   text-align: center;
+   float: left;
+   display: flex;
+   justify-content: left;
+   align-items: baseline;
+}
 
-  
+img {
+   width: 7rem;
+}
+
+.logoIcon{
+   float: left;
+}
+
+.logoLettering{
+   float: left;
+   padding-left: 10px;
+   font-size: 82px;
+   letter-spacing: -3px;
+   color:#FF826E;
+   font-family: 'Ubuntu Condensed';
 }
 
 .rightBar-menu{
-   display: inline-block;
+   float: left;
+   font-size: 34px;
    position: absolute;
-   right: 100px;
-   /*margin-right: 100px;*/
+   right: 0;
+   bottom: 10px;
+}
+
+.menu{
+   list-style-type: none;
+   margin: 0;
+}
+
+
+.menu > li{
+   display: inline-block;
+   padding-right: 5px;
+   padding-top: 0;
+   padding-bottom: 0;
+   font-size: 19px;
+   font-family: 'Montserrat', sans-serif;
+}
+
+.loginMenu a:link, a:visited {
+     
+      background-color: #FCD770;
+      color: black;
+      border: 2px solid #FCD770;
+      border-radius: 8px;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+
+}
+
+.loginMenu a:hover, a:active {
+   background-color:#b4dd7f;
+   border-color: transparent;
+}
+
+.regularMenu a:link, a:visited {
+   color: black;
+   padding: 10px 10px;
+   text-align: center;
+   text-decoration: none;
+   transition: border-bottom 0.5;
+}
+
+.regularMenu a:hover, a:active {
+   border-bottom: 2px solid black;
+   padding-bottom: 0;
 }
