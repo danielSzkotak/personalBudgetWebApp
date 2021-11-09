@@ -34,7 +34,7 @@ img {
 .logoLettering{
    float: left;
    padding-left: 10px;
-   font-size: 76px;
+   font-size: 4.6rem;
    letter-spacing: -3px;
    color:black;
    font-family: 'Ubuntu Condensed';
@@ -58,7 +58,7 @@ img {
    display: inline-block;
    padding-top: 0;
    padding-bottom: 0;
-   font-size: 15px;
+   font-size: 0.85rem;
    font-family: 'Montserrat', sans-serif;
 }
 
@@ -97,9 +97,7 @@ img {
 .leftMain{
    margin-top: 50px;
    padding-left: 50px;
-   border: 1px solid black;
-   width: 60%;
-   height: 400px;
+   width: 40rem;
    float: left;
    /* Jest opcja aby usunąć ta klasę bo jest zduplikowana? */
 }
@@ -107,15 +105,13 @@ img {
 .rightMain{
    float: left;
    margin-top: 50px;
-   border: 1px solid black;
-   width: 30%;
-   height: 400px;
+   width: 30rem;
 }
 
 .leftMain p{
-   font-size: 46px;
-   font-weight: 900;
+   font-size: 2.2rem;
    margin-top: 0;
+   font-family: 'Encode Sans', sans-serif;
 }
 
 .leftMain > ul{
@@ -125,6 +121,16 @@ img {
 .leftMain > ul > li{
    font-family: 'Sofia Pro', sans-serif;
    list-style-type: none;
-   letter-spacing: 1px;
-   font-size: 24px;;
+   letter-spacing: 0.3px;
+   font-size: 1.5rem;
+   padding-bottom: 10px;
+}
+
+li span{
+   position: relative;
+   left: 15px;
+}
+
+i{
+   font-style: normal;
 }
