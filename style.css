@@ -3,9 +3,6 @@
 
 body{
    background-color:whitesmoke;
-}
-
-.container{
    margin-left: 15vw;
    margin-right: 15vw;
 }
@@ -42,9 +39,11 @@ img {
 
 .rightBar-menu{
    float: left;
-   font-size: 34px;
+   font-size: 1.1rem;
    position: absolute;
    right: 0;
+   padding-right: 0;
+   margin-right: 0;
    bottom: 10px;
 }
 
@@ -95,21 +94,21 @@ img {
 }
 
 .leftMain{
-   margin-top: 50px;
-   padding-left: 50px;
-   width: 40rem;
+   margin-top: 5rem;
+
+   width: 40vw;
    float: left;
    /* Jest opcja aby usunąć ta klasę bo jest zduplikowana? */
 }
 
 .rightMain{
    float: left;
-   margin-top: 50px;
-   width: 30rem;
+   margin-top: 10rem;
+   width: 28vw;   
 }
 
 .leftMain p{
-   font-size: 2.2rem;
+   font-size: 2.5rem;
    margin-top: 0;
    font-family: 'Encode Sans', sans-serif;
 }
@@ -134,3 +133,35 @@ li span{
 i{
    font-style: normal;
 }
+
+input{
+   width: 100%;
+   border: 1px solid rgb(177, 175, 175);
+   background-color: whitesmoke;
+   border-radius: 5px;
+   font-size: 1.1rem;
+   padding: 22px;
+   margin-bottom: 20px;
+   min-width: 10px;
+   outline-color: yellowgreen;
+   font-family: 'Sofia Pro', sans-serif;
+}
+
+input[type=submit]{
+   width: 10rem;
+   text-align: center;
+   margin-top: 40px;
+   background-color: #b0d880;
+   cursor: pointer;
+   transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+}
+
+input[type=submit]:hover{
+   background-color:#9fbd7a;
+   border-color: transparent;
+}
+
+::placeholder {
+   color: rgb(90, 86, 86);
+   opacity: 1; 
+ }
