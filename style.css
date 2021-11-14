@@ -171,3 +171,26 @@ input[type=submit]:hover{
    margin-right: auto;
    display: block;
  }
+
+ main{
+    margin-bottom: 7vh;
+ }
+
+ .sentence{
+    text-align: center;
+    color: whitesmoke;
+    background-color: #233038;
+    margin-left:-15vw;
+    margin-right: -15vw;
+    padding: 4vh;
+    font-size: 1.3rem;
+    font-family: 'Encode Sans', sans-serif;
+    margin-bottom: 7vh;
+ }
+
+ .footer{
+    text-align: center;
+    font-size: 1.0rem;
+    font-family: 'Montserrat', sans-serif;
+    padding-bottom: 15px;
+ }
