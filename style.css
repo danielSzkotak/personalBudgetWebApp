@@ -146,6 +146,10 @@ input{
    font-family: 'Sofia Pro', sans-serif;
 }
 
+input[type=password]{
+   margin-bottom: 0px;
+}
+
 input[type=submit]{
    width: 10rem;
    text-align: center;
@@ -194,3 +198,19 @@ input[type=submit]:hover{
     font-family: 'Montserrat', sans-serif;
     padding-bottom: 15px;
  }
+
+ .isAccount{
+   font-size: 0.85rem;
+   color: rgb(54, 54, 54);
+   font-family: 'Montserrat', sans-serif;
+   margin-top: 1vh;
+ }
+
+ .isAccount a{
+    color: #38722a;
+    text-decoration: none;
+ }
+ .isAccount a:hover{
+   color: #489435;
+   border-color: transparent;
+}
