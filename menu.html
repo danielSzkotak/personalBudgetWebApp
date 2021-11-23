@@ -4,7 +4,8 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Twój budżet</title>
+   <meta name="description" content="Menu główne">
+   <title>Twój budżet - Menu główne</title>
    <link rel="stylesheet" href="style.css" type="text/css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,33 +29,29 @@
             </a>
             <div class="rightBar-menu">
                <ul class="menu">
-                  <li><a href="#" class="regularMenu">Pomoc</a></li>
-                  <li><a href="#" class="regularMenu">Ciekawe linki</a></li>
-                  <li class="loginMenu"><a href="index.html">Zarejestruj się</a></li>
+                  <li><a href="help.html" class="regularMenu">Pomoc</a></li>
+                  <li><a href="links.html" class="regularMenu">Ciekawe linki</a></li>
+                  <li><a href="index.html" class="regularMenu">Wyloguj się</a></li>
+                  <li id="alignSettingsIcon">
+                     <a href="settings.html" class="settings">
+                        <span class="tooltiptext">Zmień swoje ustawienia</span>
+                        <span class="rotate"><i class="icon-cog"></i></span>
+                     </a>
+                  </li>
                </ul>
             </div>
             <div style="clear: both;"></div>
          </div>
      </nav>
-     
-         <div class="leftMain">
-            <p class="mainParagraph">Zaloguj się aby zarządzać swoim budżetem.</p>
-            <ul class="main-feature-description">
-               <li><i class="demo-icon icon-ok"><span>Zbierz wszystkie swoje przychody w jednym miejscu.</span></i></li>
-               <li><i class="demo-icon icon-ok"><span>Rozsądnie kalkuluj swoje wydatki.</span></i></li>
-               <li><i class="demo-icon icon-ok"><span>Analizuj swój budżet aby lepiej nim zarządzać.</span></i></li>
-               <li><i class="demo-icon icon-ok"><span>Zacznij już dzisiaj korzystać z aplikacji Twój budżet.</span></i></li>
-            </ul>
-            <img id="mainChart" src="temp/mainChart.png" alt="wykresy">
+         <div class="leftMainInMenu">
+         <p class="mainParagraph">Witaj <span class="loggedName">Daniel</span></p>
+           <a href="#" id="addIncome">DODAJ PRZYCHÓD</a>
+           <a href=# id="addExpense">DODAJ ROZCHÓD</a>
+           <a href="#" id="showBalance">PRZEGLĄDAJ BILANS</a>
          </div>
       <main>
-         <div class="rightMain">
-            <form action="menu.html">
-               <input type="text" name="textInput" id="textInput1" placeholder="Podaj imię"></br>
-               <input type="password" name="passwordInput" id="passwordInput1" placeholder="Podaj hasło"></br>
-               <h4 class="isAccount">Nie masz jeszcze konta? <a href="index.html" class="isAccountLink">Zarejestruj się</a> </h4>
-               <input type="submit" value="Zaloguj się">
-            </form>
+         <div class="rightMainInMenu">
+            <img id="mainChartInMenu" src="temp/mainChart.png" alt="wykresy">
          </div>
          <div style="clear: both;"></div>
      </main>
