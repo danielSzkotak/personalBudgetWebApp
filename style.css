@@ -45,11 +45,12 @@ img {
    padding-right: 0;
    margin-right: 0;
    bottom: 10px;
+   background-color: whitesmoke;
 }
 
 .menu{
    list-style-type: none;
-   margin: 0;
+   margin: 0;  
 }
 
 
@@ -59,6 +60,7 @@ img {
    padding-bottom: 0;
    font-size: 0.85rem;
    font-family: 'Montserrat', sans-serif;
+   text-decoration: none;
 }
 
 .loginMenu a:link, a:visited {
@@ -79,21 +81,41 @@ img {
    border-color: transparent;
 }
 
-.regularMenu a:link, a:visited {
+.regularMenu {
    color: black;
    padding: 10px 10px;
    text-align: center;
    text-decoration: none;
-   transition: border-bottom 0.5;
 }
 
-.regularMenu a:hover, a:active {
-   background-color:whitesmoke;
-   border-bottom: 2px solid black;
-   padding-bottom: 1px;
+.settings:active{
+   background-color: whitesmoke;
 }
+
+
+.regularMenu:hover{
+   background-color:whitesmoke;
+   padding-bottom: 1px;
+   border-bottom: 2px solid rgb(37, 37, 37);
+   padding-bottom: 0.4rem;
+}
+
 
 .leftMain{
+   margin-top: 5rem;
+   width: 40vw;
+   float: left;
+   /* Jest opcja aby usunąć ta klasę bo jest zduplikowana? */
+}
+
+.mainParagraph{
+   font-size: 2.3rem;
+   font-family: 'Encode Sans', sans-serif;
+   letter-spacing: 1.1px;
+   padding: 0;
+}
+
+.leftMainInMenu{
    margin-top: 5rem;
    width: 40vw;
    float: left;
@@ -106,10 +128,10 @@ img {
    width: 28vw;   
 }
 
-.leftMain p{
-   font-size: 2.5rem;
-   margin-top: 0;
-   font-family: 'Encode Sans', sans-serif;
+.rightMainInMenu{
+   float: left;
+   margin-top: 8rem;
+   width: 28vw;   
 }
 
 .leftMain > ul{
@@ -176,6 +198,13 @@ input[type=submit]:hover{
    display: block;
  }
 
+ #mainChartInMenu{
+   width: 30rem;
+   margin-left: auto;
+   margin-right: auto;
+   display: block;
+ }
+
  main{
     margin-bottom: 7vh;
  }
@@ -214,3 +243,98 @@ input[type=submit]:hover{
    color: #489435;
    border-color: transparent;
 }
+
+
+.leftMainInMenu a{
+   color:rgb(255, 255, 255);
+   text-align: center;
+   line-height: 15vh;
+   text-align: center;
+   font-size: 1.4vw;
+   font-family: 'Encode Sans', sans-serif;
+   letter-spacing: 1.5px;
+   border: none;
+   padding-bottom: 0;
+   border-radius: 10px;
+   text-decoration: none;
+   display: inline-block;
+   transition: color 0.2s;
+}
+
+.leftMainInMenu a:hover{
+  color: #474747;
+}
+
+#addIncome {
+    width: 17vw;
+    margin-right: 5px;
+    height: 15vh;
+    background-color: #9fc571;
+}
+
+#addExpense{
+   width: 17vw;
+   margin-left: 5px;
+   margin-right: 0;
+   height: 15vh;
+   background-color: #ff826e;
+}
+
+#showBalance{
+   width: calc(34vw + 15px);
+   height: 20vh;
+   margin-top: 15px;
+   background-color: #ebc45a;
+   line-height: 20vh;
+   font-size: 2vw;
+}
+
+.rotate{
+  
+   transition: 0.70s;
+  -webkit-transition: 0.70s;
+  -moz-transition: 0.70s;
+  -ms-transition: 0.70s;
+  -o-transition: 0.70s;
+  display: block;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.rotate:hover{
+   transition: 0.70s;
+  -webkit-transition: 0.70s;
+  -moz-transition: 0.70s;
+  -ms-transition: 0.70s;
+  -o-transition: 0.70s;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.rotate{
+   position: relative;
+   top: 0.3rem;
+}
+
+.tooltiptext{
+   visibility: hidden;
+   width: 120px;
+   background-color: black;
+   color: #fff;
+   text-align: center;
+   border-radius: 6px;
+   padding: 5px 0;
+   opacity: 0.75;
+   /* Position the tooltip */
+   position: absolute;
+   top: -3rem;
+   left: 19.7rem;
+   z-index: 1;
+}
+
+#alignSettingsIcon:hover .tooltiptext {
+   visibility: visible;
+ }
