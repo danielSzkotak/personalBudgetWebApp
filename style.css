@@ -179,7 +179,7 @@ input[type=password]{
    margin-bottom: 0px;
 }
 
-#submitButton{
+.submitButton{
    padding: 1.35rem;
    width: 10rem;
    font-size: 1.1rem;
