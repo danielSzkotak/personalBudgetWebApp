@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Menu główne">
+   <title>Twój budżet - Menu główne</title>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <link rel="stylesheet" href="css/fontello.css" type="text/css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">  
+   <link href="http://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet">
+</head>
+<body>
+   <div class="container">
+     <nav>
+         <div class="topBar">
+            <a href="index.html" class="logoIndex">
+               <div class="leftBar-logo">
+                  <div class="logoIcon">
+                     <img src="temp/budget.png" alt="budżet-ikona">
+                  </div>
+                  <div class="logoLettering">twój <span style="color: #8db856;">budżet</span> </div>
+               </div>
+            </a>
+            <div class="rightBar-menu">
+               <ul class="menu">
+                  <li><a href="help.html" class="regularMenu">Pomoc</a></li>
+                  <li><a href="links.html" class="regularMenu">Ciekawe linki</a></li>
+                  <li><a href="index.html" class="regularMenu">Wyloguj się</a></li>
+                  <li id="alignSettingsIcon">
+                     <a href="settings.html" class="settings">
+                        <span class="tooltiptext">Zmień swoje ustawienia</span>
+                        <span class="rotate"><i class="icon-cog"></i></span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div style="clear: both;"></div>
+         </div>
+     </nav>
+         <div class="leftMainInMenu">
+         <p class="mainParagraph">Witaj <span class="loggedName">Daniel</span></p>
+           <a href="#" id="addIncome">DODAJ PRZYCHÓD</a>
+           <a href="addExpense.html" id="addExpense">DODAJ WYDATEK</a>
+           <a href="#" id="showBalance">PRZEGLĄDAJ BILANS</a>
+         </div>
+      <main>
+         <div class="rightMainInExpense">
+            <p class="mainParagraph">Dodaj wydatek</p>
+
+            <form action="login.html">
+               <input type="number" step="0.01" name="expenseAmount" id="expenseAmount1" placeholder="Podaj kwotę wydatku"></br>
+               <input class="date" type="date" name="expenseDate" id="expenseDate1"></br>
+               <script>
+                  var dateControl = document.querySelector('input[type="date"]');
+                  dateControl.value = '2017-06-01';
+               </script>
+               <div class="select">
+                  <div class="paymentIcon">
+                     <select name="payment" id="payment">
+                        <option selected disabled> Sposób płatności </option>
+                        <option value="cash">Gotówka</option>
+                        <option value="creditCard">Karta kredytowa</option>
+                        <option value="debitCard">Karta debetowa</option>
+                     </select>
+                  </div>
+                  <div class="categoryIcon">
+                     <select name="expenseCategory" id="expenseCategory">
+                        <option selected disabled> Kategoria płatności </option>
+                        <option value="food">Jedzenie</option>
+                        <option value="apartment">Mieszkanie</option>
+                        <option value="transportation">Transport</option>
+                        <option value="telecommunication">Telekomunikacja</option>
+                        <option value="healthcare">Opieka zdrowotna</option>
+                        <option value="cloth">Ubranie</option>
+                        <option value="hygiene">Higiena</option>
+                        <option value="kids">Dzieci</option>
+                        <option value="entertainment">Rozrywka</option>
+                        <option value="trip">Wycieczka</option>
+                        <option value="training">Szkolenia</option>
+                        <option value="books">Książki</option>
+                        <option value="savings">Oszczędności</option>
+                        <option value="pension">Na złotą jesień, czyli emeryturę</option>
+                        <option value="debt">Spłata długów</option>
+                        <option value="donation">Darowizna</option>
+                        <option value="another">Inne</option>
+                     </select>
+                  </div>
+               </div>
+               <input type="submit" value="Dodaj wydatek" id="submitButton">
+               <a href="#" id="clearButton">Wyczyść</a>
+            </form>
+
+         </div>
+         <div style="clear: both;"></div>
+     </main>
+     <div class="sentence">
+        <h1>Profesjonalnie buduj swój kapitał osobisty!</h1>
+     </div>
+     <div class="featuresDescription"></div>
+     <footer>
+         <div class="footer">
+           <p>© 2021 Twój budżet osobisty. All rights reserved.</p> 
+         </div>
+     </footer>
+  </div>
+</body>
+</html>

@@ -5,6 +5,7 @@ body{
    background-color:whitesmoke;
    margin-left: 15vw;
    margin-right: 15vw;
+   
 }
 
 .topBar{
@@ -117,7 +118,7 @@ img {
 
 .leftMainInMenu{
    margin-top: 5rem;
-   width: 40vw;
+   width: 38vw;
    float: left;
    /* Jest opcja aby usunąć ta klasę bo jest zduplikowana? */
 }
@@ -130,7 +131,13 @@ img {
 
 .rightMainInMenu{
    float: left;
-   margin-top: 8rem;
+   margin-top: 12.5rem;
+   width: 28vw;   
+}
+
+.rightMainInExpense{
+   float: left;
+   margin-top: 5rem;
    width: 28vw;   
 }
 
@@ -156,12 +163,12 @@ i{
 }
 
 input{
-   width: 100%;
+   width: 26vw;
    border: 1px solid rgb(177, 175, 175);
    background-color: whitesmoke;
    border-radius: 5px;
-   font-size: 1.1rem;
-   padding: 22px;
+   font-size: 1.2rem;
+   padding: 1.6rem;
    margin-bottom: 20px;
    min-width: 10px;
    outline-color: yellowgreen;
@@ -172,17 +179,18 @@ input[type=password]{
    margin-bottom: 0px;
 }
 
-input[type=submit]{
+#submitButton{
+   padding: 1.35rem;
    width: 10rem;
-   text-align: center;
-   margin-top: 40px;
+   font-size: 1.1rem;
+   margin-top: 20px;
    background-color: #b0d880;
    cursor: pointer;
    transition: border-color 0.5s, background-color 0.5s, color 0.5s;
 }
 
-input[type=submit]:hover{
-   background-color:#9fbd7a;
+#submitButton:hover{
+   background-color:#7ab137;
    border-color: transparent;
 }
 
@@ -266,14 +274,14 @@ input[type=submit]:hover{
 }
 
 #addIncome {
-    width: 17vw;
+    width: 16vw;
     margin-right: 5px;
     height: 15vh;
     background-color: #9fc571;
 }
 
 #addExpense{
-   width: 17vw;
+   width: 16vw;
    margin-left: 5px;
    margin-right: 0;
    height: 15vh;
@@ -281,7 +289,7 @@ input[type=submit]:hover{
 }
 
 #showBalance{
-   width: calc(34vw + 15px);
+   width: calc(32vw + 15px);
    height: 20vh;
    margin-top: 15px;
    background-color: #ebc45a;
@@ -328,7 +336,6 @@ input[type=submit]:hover{
    border-radius: 6px;
    padding: 5px 0;
    opacity: 0.75;
-   /* Position the tooltip */
    position: absolute;
    top: -3rem;
    left: 19.7rem;
@@ -338,3 +345,86 @@ input[type=submit]:hover{
 #alignSettingsIcon:hover .tooltiptext {
    visibility: visible;
  }
+
+.paymentIcon{
+   position: relative;
+}
+
+.paymentIcon:after {
+   content: '\25BC';
+   font-family: 'Sofia Pro', sans-serif;
+   font-size: 1.5rem;
+   color: rgb(90, 86, 86);
+   right: 0.7rem;
+   top: 1.5rem;
+   padding-left: -2rem;
+   position: absolute;
+   pointer-events: none;
+}
+
+.categoryIcon{
+   position: relative;
+}
+
+.categoryIcon:after {
+   content: '\25BC';
+   font-family: 'Sofia Pro', sans-serif;
+   font-size: 1.5rem;
+   color: rgb(90, 86, 86);
+   right: 0.7rem;
+   top: 1.5rem;
+   padding-left: -2rem;
+   position: absolute;
+   pointer-events: none;
+}
+
+.select select{
+   -webkit-appearance: none;
+   -moz-appearance: none;
+   appearance: none; 
+   margin-bottom: 1.3rem;
+   display: block;
+   width: calc(26vw + 3.4rem);
+   padding-left: 1.2rem;
+   padding-top: 1.7rem;
+   padding-bottom: 1.7rem;
+   background: whitesmoke;
+   background-image: none;
+   border: 1px solid #b3b3b3;
+   border-radius: 5px;
+   overflow: hidden;
+   color: rgb(90, 86, 86);
+   font-family: 'Sofia Pro', sans-serif;
+   font-size: 1.2rem;
+   cursor: pointer;
+   -ms-word-break: normal;
+   word-break: normal; 
+}
+
+.date{
+   color: rgb(90, 86, 86);
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+   cursor: pointer;
+   filter: invert(0.35);
+ }
+
+ #clearButton{
+   border: 1px solid rgb(95, 95, 95);
+   background-color:#ee5740;
+   color: white;
+   text-decoration: none;
+   border-radius: 5px;
+   font-size: 1.1rem;
+   padding: 22px;
+   font-family: 'Sofia Pro', sans-serif;
+   transition: border-color 0.5s, background-color 0.5s, color 0.5s;
+}
+
+#clearButton:hover{
+      background-color: rgb(241, 58, 58);
+      cursor: pointer;    
+}
+
+
