@@ -4,8 +4,8 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta name="description" content="Menu główne">
-   <title>Twój budżet - Menu główne</title>
+   <meta name="description" content="Przeglądaj bilans">
+   <title>Twój budżet - Bilans</title>
    <link rel="stylesheet" href="style.css" type="text/css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,56 +46,25 @@
          <div class="leftMainInMenu">
          <p class="mainParagraph">Witaj <span class="loggedName">Daniel</span></p>
            <a href="#" id="addIncome">DODAJ PRZYCHÓD</a>
-           <a href="addExpense.html" id="addExpense">DODAJ WYDATEK</a>
-           <a href="balancePeriod.html" id="showBalance">PRZEGLĄDAJ BILANS</a>
+           <a href="addExpense.html" id="addExpense">DODAJ WYDATEK</a>          
          </div>
       <main>
          <div class="rightMainInExpense">
-            <p class="mainParagraph">Dodaj wydatek</p>
+            <p class="mainParagraph">Przeglądaj bilans</p>
 
-            <form action="#">
-               <input type="number" step="0.01" name="expenseAmount" id="expenseAmount1" placeholder="Podaj kwotę wydatku"></br>
-               <input class="date" type="date" name="expenseDate" id="expenseDate1"></br>
-               <script>
-                  var dateControl = document.querySelector('input[type="date"]');
-                  dateControl.value = '2017-06-01';
-               </script>
+            <form action="showBalance.html">
                <div class="select">
                   <div class="paymentIcon">
                      <select name="payment" id="payment">
-                        <option selected disabled> Sposób płatności </option>
-                        <option value="cash">Gotówka</option>
-                        <option value="creditCard">Karta kredytowa</option>
-                        <option value="debitCard">Karta debetowa</option>
-                     </select>
-                  </div>
-                  <div class="categoryIcon">
-                     <select name="expenseCategory" id="expenseCategory">
-                        <option selected disabled> Kategoria wydatku</option>
-                        <option value="food">Jedzenie</option>
-                        <option value="apartment">Mieszkanie</option>
-                        <option value="transportation">Transport</option>
-                        <option value="telecommunication">Telekomunikacja</option>
-                        <option value="healthcare">Opieka zdrowotna</option>
-                        <option value="cloth">Ubranie</option>
-                        <option value="hygiene">Higiena</option>
-                        <option value="kids">Dzieci</option>
-                        <option value="entertainment">Rozrywka</option>
-                        <option value="trip">Wycieczka</option>
-                        <option value="training">Szkolenia</option>
-                        <option value="books">Książki</option>
-                        <option value="savings">Oszczędności</option>
-                        <option value="pension">Na złotą jesień, czyli emeryturę</option>
-                        <option value="debt">Spłata długów</option>
-                        <option value="donation">Darowizna</option>
-                        <option value="another">Inne</option>
+                        <option selected value="cash">Bieżący miesiąc</option>
+                        <option value="creditCard">Poprzedni miesiąc</option>
+                        <option value="debitCard">Bieżący rok</option>
+                        <option value="debitCard">Niestandardowy</option>
                      </select>
                   </div>
                </div>
-               <input type="submit" value="Dodaj wydatek" class="submitButton">
-               <a href="#" id="clearButton">Wyczyść</a>
+               <input type="submit" value="Pokaż bilans" class="submitButton">
             </form>
-            <p class="confirmParagraph">Dodano wydatek &#10004</p>
 
          </div>
          <div style="clear: both;"></div>

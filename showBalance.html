@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta name="description" content="Przeglądaj bilans">
+   <title>Twój budżet - Bilans</title>
+   <link rel="stylesheet" href="style.css" type="text/css">
+   <link rel="stylesheet" href="css/fontello.css" type="text/css">
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">  
+   <link href="http://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet">
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      // Load google charts
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      // Draw the chart and set the chart values
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+        ['Wydatki', 'suma'],
+        ['Mieszkanie', 500],
+        ['Jedzenie', 300],
+        ['Opieka zdrowotna', 250],
+        ['Ubranie', 150],
+        ['Książki', 50],
+        ['Inne wydatki', 10],
+        ['Rozrywka', 1]
+      ]);
+      
+        // Optional; add a title and set the width and height of the chart
+        var options = {'width':'auto', 'height':800, backgroundColor: 'transparent',
+       };
+      
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+      </script>
+</head>
+<body>
+   <div class="container">
+     <nav>
+         <div class="topBar">
+            <a href="index.html" class="logoIndex">
+               <div class="leftBar-logo">
+                  <div class="logoIcon">
+                     <img src="temp/budget.png" alt="budżet-ikona">
+                  </div>
+                  <div class="logoLettering">twój <span style="color: #8db856;">budżet</span> </div>
+               </div>
+            </a>
+            <div class="rightBar-menu">
+               <ul class="menu">
+                  <li><a href="help.html" class="regularMenu">Pomoc</a></li>
+                  <li><a href="links.html" class="regularMenu">Ciekawe linki</a></li>
+                  <li><a href="index.html" class="regularMenu">Wyloguj się</a></li>
+                  <li id="alignSettingsIcon">
+                     <a href="settings.html" class="settings">
+                        <span class="tooltiptext">Zmień swoje ustawienia</span>
+                        <span class="rotate"><i class="icon-cog"></i></span>
+                     </a>
+                  </li>
+               </ul>
+            </div>
+            <div style="clear: both;"></div>
+         </div>
+     </nav>
+         <div class="leftMainInMenu">
+         <p class="mainParagraph">Witaj <span class="loggedName">Daniel</span></p>
+           <a href="#" id="addIncome">DODAJ PRZYCHÓD</a>
+           <a href="addExpense.html" id="addExpense">DODAJ WYDATEK</a>          
+         </div>
+      <main>
+         <div class="rightMainInExpense">
+            <p class="mainParagraph">Przeglądaj bilans</p>
+
+            <form action="showBalance.html">
+               <div class="select">
+                  <div class="paymentIcon">
+                     <select name="payment" id="payment">
+                        <option selected value="cash">Bieżący miesiąc</option>
+                        <option value="creditCard">Poprzedni miesiąc</option>
+                        <option value="debitCard">Bieżący rok</option>
+                        <option value="debitCard">Niestandardowy</option>
+                     </select>
+                  </div>
+               </div>
+               <input type="submit" value="Pokaż bilans" class="submitButton">
+            </form>
+         </div>
+         <div style="clear: both;"></div>
+
+         <p class="mainParagraph">Przychody</p>
+         <table class="customers">
+            <tr>
+              <th>Rodzaj przychodu</th>
+              <th>Suma [zł]</th>
+            </tr>
+            
+            <tr>
+              <td>Wynagrodzenie</td>
+              <td>3500,00</td>
+            </tr>
+            <tr>
+               <td>Inne</td>
+               <td>1500,00</td>
+             </tr>
+             <tr>
+               <td>Sprzedaż na allegro</td>
+               <td>250,00</td>
+             </tr>
+            <tr>
+              <td>Odsetki bankowe</td>
+              <td>12,50</td>
+            </tr>  
+            <tr>
+               <th>Suma przychodów</th>
+               <th>5 262,50</th>
+             </tr>
+          </table>
+          <p class="mainParagraph">Wydatki</p>
+          <table class="customers">
+             <tr>
+               <th class="ExpenseTh">Rodzaj wydatku</th>
+               <th class="ExpenseTh">Suma [zł]</th>
+             </tr>
+             <tr>
+               <td>Mieszkanie</td>
+               <td>500,00</td>
+             </tr>
+             <tr>
+               <td>Jedzenie</td>
+               <td>300,00</td>
+             </tr>
+             <tr>
+               <td>Opieka zdrowotna</td>
+               <td>250,00</td>
+             </tr>
+             <tr>
+               <td>Ubranie</td>
+               <td>150,00</td>
+             </tr>   
+             <tr>
+               <td>Książki</td>
+               <td>50,00</td>
+             </tr>
+             <tr>
+               <td>Inne wydatki</td>
+               <td>10,00</td>
+             </tr>
+             <tr>
+               <td>Rozrywka</td>
+               <td>1,00</td>
+             </tr>
+             <tr>
+               <th class="ExpenseTh">Suma wydatków</th>
+               <th class="ExpenseTh">1 261,00</th>
+             </tr>    
+           </table>
+
+           <p class="mainParagraph">Bilans</p>
+           <table class="customers">
+              <tr>
+                <th class="bilans">Twój bilans</th>
+                <th class="bilans">+ 4 001,50</th>
+              </tr>                                         
+            </table>
+            <p class="mainParagraph">Wykres wydatków</p>
+            <div id="parentChar">
+             <div id="piechart"></div>
+            </div>
+
+
+     </main>
+     <div class="sentence">
+        <h1>Profesjonalnie buduj swój kapitał osobisty!</h1>
+     </div>
+     <div class="featuresDescription"></div>
+     <footer>
+         <div class="footer">
+           <p>© 2021 Twój budżet osobisty. All rights reserved.</p> 
+         </div>
+     </footer>
+  </div>
+</body>
+</html>
