@@ -116,6 +116,16 @@ img {
    padding: 0;
 }
 
+.confirmParagraph{
+   font-size: 2.3rem;
+   font-family: 'Encode Sans', sans-serif;
+   color: #38722a;
+   letter-spacing: 1.1px;
+   padding: 0;
+   margin: 0;
+   visibility: hidden;
+}
+
 .leftMainInMenu{
    margin-top: 5rem;
    width: 38vw;
@@ -183,7 +193,6 @@ input[type=password]{
    padding: 1.35rem;
    width: 10rem;
    font-size: 1.1rem;
-   margin-top: 20px;
    background-color: #b0d880;
    cursor: pointer;
    transition: border-color 0.5s, background-color 0.5s, color 0.5s;
@@ -207,10 +216,11 @@ input[type=password]{
  }
 
  #mainChartInMenu{
-   width: 30rem;
+   width: 25vw;
    margin-left: auto;
    margin-right: auto;
    display: block;
+   margin-top: -2rem;
  }
 
  main{
@@ -427,4 +437,47 @@ input[type="date"]::-webkit-calendar-picker-indicator {
       cursor: pointer;    
 }
 
+.customers {
+   font-family: Arial, Helvetica, sans-serif;
+   font-size: 1.2rem;
+   border-collapse: collapse;
+   width: 100%;
+   table-layout: fixed;
+ }
 
+.customers td, .customers th {
+   border: 1px solid #ddd;
+   padding: 10px;
+ }
+
+ .customers tr:nth-child(even){background-color: #f2f2f2;}
+
+ .customers tr:hover {background-color: #ddd;}
+
+ .customers th {
+   padding-top: 12px;
+   padding-bottom: 12px;
+   text-align: left;
+   background-color: #86af54;
+   color: white;
+   font-size: 1.4rem;
+ }
+
+ .customers .ExpenseTh {
+   background-color: #d35c49;
+ }
+
+ .customers .bilans{
+   background-color: #df9b35;
+ }
+
+ table{
+    margin-bottom: 5rem;
+    margin-top: -1rem;
+ }
+
+ #parentChar{
+   margin-top: -5vw;
+   padding: 0, 0;
+   margin-bottom: 0;
+ }
