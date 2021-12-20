@@ -141,7 +141,13 @@ img {
    width: auto;   
    margin-right: 0;
    margin-left: 12px;
+   display: flex;
+   flex-direction: column;
+}
 
+.theForm{
+   flex-direction: column;
+   display: flex;
 }
 
 .rightMainInMenu{
@@ -373,7 +379,6 @@ input[type=password]{
    color: rgb(90, 86, 86);
    right: 0.7rem;
    top: 1.5rem;
-   padding-left: -2rem;
    position: absolute;
    pointer-events: none;
 }
@@ -389,7 +394,6 @@ input[type=password]{
    color: rgb(90, 86, 86);
    right: 0.7rem;
    top: 1.5rem;
-   padding-left: -2rem;
    position: absolute;
    pointer-events: none;
 }

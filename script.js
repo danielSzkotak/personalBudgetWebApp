@@ -13,7 +13,6 @@ function checkItem(){
       listOfInputs[i].style.border ="2px solid #86af54";
    }
    else listOfInputs[i].style.border = "1px solid #b3b3b3";
-
 }
 
 function enforceNumberValidation(ele) {

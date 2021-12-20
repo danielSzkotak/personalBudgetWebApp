@@ -4,7 +4,7 @@
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Twój budżet</title>
+   <title>Twój budżet - Zaloguj się</title>
    <link rel="stylesheet" href="style.css" type="text/css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
    <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,33 +37,38 @@
             <div style="clear: both;"></div>
          </div>
      </nav>
-     
-         <div class="leftMain">
-            <p class="mainParagraph">Zaloguj się aby zarządzać swoim budżetem.</p>
-            <ul class="main-feature-description">
-               <li><i class="demo-icon icon-ok"><span>Zbierz wszystkie swoje przychody w jednym miejscu.</span></i></li>
-               <li><i class="demo-icon icon-ok"><span>Rozsądnie kalkuluj swoje wydatki.</span></i></li>
-               <li><i class="demo-icon icon-ok"><span>Analizuj swój budżet aby lepiej nim zarządzać.</span></i></li>
-               <li><i class="demo-icon icon-ok"><span>Zacznij już dzisiaj korzystać z aplikacji Twój budżet.</span></i></li>
-            </ul>
-            <img id="mainChart" src="temp/mainChart.png" alt="wykresy">
-         </div>
-      <main>
-         <div class="rightMain">
-            <form action="menu.html">
-               <input type="text" minlength="5" value="" name="textInput" id="textInput1" placeholder="Podaj imię" oninput="checkItem()" required></br>
-               <input type="password" minlength="5" value="" name="passwordInput" id="passwordInput1" placeholder="Podaj hasło" oninput="checkItem()" required></br>
-               <h4 class="isAccount">Nie masz jeszcze konta? <a href="index.html" class="isAccountLink">Zarejestruj się</a> </h4>
-               <input type="submit" value="Zaloguj się" class="submitButton" onclick="validateForm();">
-            </form>
-         </div>
-         <div style="clear: both;"></div>
+     <main>
+        <section>
+            <div class="leftMain">
+               <header>
+                   <h1 class="mainParagraph">Zaloguj się aby zarządzać swoim budżetem.</h1>
+               </header>
+               <ul class="main-feature-description">
+                  <li><i class="demo-icon icon-ok"><span>Zbierz wszystkie swoje przychody w jednym miejscu.</span></i></li>
+                  <li><i class="demo-icon icon-ok"><span>Rozsądnie kalkuluj swoje wydatki.</span></i></li>
+                  <li><i class="demo-icon icon-ok"><span>Analizuj swój budżet aby lepiej nim zarządzać.</span></i></li>
+                  <li><i class="demo-icon icon-ok"><span>Zacznij już dzisiaj korzystać z aplikacji Twój budżet.</span></i></li>
+               </ul>
+               <img id="mainChart" src="temp/mainChart.png" alt="wykresy">
+            </div>
+         </section>
+         <section>
+            <div class="rightMain">
+               <form action="menu.html" class="theForm">
+                  <input type="text" minlength="5" value="" name="textInput" id="textInput1" placeholder="Podaj imię" oninput="checkItem()" required>
+                  <input type="password" minlength="5" value="" name="passwordInput" id="passwordInput1" placeholder="Podaj hasło" oninput="checkItem()" required>
+                  <p class="isAccount">Nie masz jeszcze konta? <a href="index.html" class="isAccountLink">Zarejestruj się</a> </p>
+                  <input type="submit" value="Zaloguj się" class="submitButton" onclick="validateForm();">
+               </form>
+            </div>
+            <div style="clear: both;"></div>
+         </section>
      </main>
+     <footer>
      <div class="sentence">
-        <h1>Profesjonalnie buduj swój kapitał osobisty!</h1>
+        <h2 class="mainParagraph">Profesjonalnie buduj swój kapitał osobisty!</h2>
      </div>
      <div class="featuresDescription"></div>
-     <footer>
          <div class="footer">
            <p>© 2021 Twój budżet osobisty. All rights reserved.</p> 
          </div>
