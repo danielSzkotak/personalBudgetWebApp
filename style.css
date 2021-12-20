@@ -104,27 +104,29 @@ img {
 
 .leftMain{
    margin-top: 5rem;
-   width: 40vw;
+   width: 36vw;
    float: left;
+   margin-right: 10px;
    /* Jest opcja aby usunąć ta klasę bo jest zduplikowana? */
 }
 
 .mainParagraph{
    font-size: 2.3rem;
-   font-family: 'Encode Sans', sans-serif;
+   font-family: 'Encode Sans', sans-serif; 
    letter-spacing: 1.1px;
    padding: 0;
 }
 
-.confirmParagraph{
+#addExpenseParagraph{
    font-size: 2.3rem;
    font-family: 'Encode Sans', sans-serif;
    color: #38722a;
    letter-spacing: 1.1px;
    padding: 0;
    margin: 0;
-   visibility: hidden;
+   display: none;
 }
+
 
 .leftMainInMenu{
    margin-top: 5rem;
@@ -136,7 +138,10 @@ img {
 .rightMain{
    float: left;
    margin-top: 12rem;
-   width: 28vw;   
+   width: auto;   
+   margin-right: 0;
+   margin-left: 12px;
+
 }
 
 .rightMainInMenu{
@@ -150,6 +155,7 @@ img {
    margin-top: 5rem;
    width: 28vw;   
 }
+
 
 .leftMain > ul{
    padding-left: 0;
@@ -181,7 +187,7 @@ input{
    padding: 1.6rem;
    margin-bottom: 20px;
    min-width: 10px;
-   outline-color: yellowgreen;
+   
    font-family: 'Sofia Pro', sans-serif;
 }
 
@@ -411,7 +417,7 @@ input[type=password]{
    word-break: normal; 
 }
 
-.date{
+input[type='number'], [type='date']{
    color: rgb(90, 86, 86);
 }
 
@@ -476,8 +482,51 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-top: -1rem;
  }
 
- #parentChar{
-   margin-top: -5vw;
-   padding: 0, 0;
-   margin-bottom: 0;
+
+
+ .selectPeriodParagraph{
+   font-size: 1rem;
+   font-family: 'Encode Sans', sans-serif; 
+   letter-spacing: 1px;
+   padding: 0;
+   color: #666666;
+   margin-bottom: 0.5rem;
+}
+
+ .selectPeriod{
+   display: none;
+   margin-top: 2.5rem;
  }
+
+ #wrongDates{
+   font-size: 1rem;
+   font-family: 'Encode Sans', sans-serif; 
+   letter-spacing: 1px;
+   padding: 0;
+   color: red;
+   margin: 0;
+   margin-bottom: 1rem;
+}
+
+#showBalanceContainer{
+   display: none;
+}
+
+
+
+#piechart1{
+   margin-top: -10rem;
+   margin-bottom: -10rem;
+}
+
+#piechart2{
+   margin-top: -10rem;
+}
+
+h2{
+   font-size: 2rem;
+   font-family: 'Encode Sans', sans-serif; 
+   letter-spacing: 1.1px;
+   padding: 0;
+}
+

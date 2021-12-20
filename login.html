@@ -13,6 +13,7 @@
    <link href="https://fonts.googleapis.com/css2?family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">
    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">  
    <link href="http://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet">
+   <script src="script.js"></script>
 </head>
 <body>
    <div class="container">
@@ -50,10 +51,10 @@
       <main>
          <div class="rightMain">
             <form action="menu.html">
-               <input type="text" name="textInput" id="textInput1" placeholder="Podaj imię"></br>
-               <input type="password" name="passwordInput" id="passwordInput1" placeholder="Podaj hasło"></br>
+               <input type="text" minlength="5" value="" name="textInput" id="textInput1" placeholder="Podaj imię" oninput="checkItem()" required></br>
+               <input type="password" minlength="5" value="" name="passwordInput" id="passwordInput1" placeholder="Podaj hasło" oninput="checkItem()" required></br>
                <h4 class="isAccount">Nie masz jeszcze konta? <a href="index.html" class="isAccountLink">Zarejestruj się</a> </h4>
-               <input type="submit" value="Zaloguj się" class="submitButton">
+               <input type="submit" value="Zaloguj się" class="submitButton" onclick="validateForm();">
             </form>
          </div>
          <div style="clear: both;"></div>
