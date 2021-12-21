@@ -1,6 +1,7 @@
 
 function checkItem(){
    var listOfInputs = document.querySelectorAll('input[type="password"], input[type="text"], input[name="expenseDate"], .select select');
+  
    for(var i=0; i<listOfInputs.length; i++){
       if(listOfInputs[i] && listOfInputs[i].value) {
          if (listOfInputs[i].value.length < 5) listOfInputs[i].style.border ="2px solid red";
@@ -8,11 +9,6 @@ function checkItem(){
       }
       else listOfInputs[i].style.border = "1px solid #b3b3b3";
    }
-
-   if(document.getElementById("expenseAmount1") && document.getElementById("expenseAmount1").value) {
-      listOfInputs[i].style.border ="2px solid #86af54";
-   }
-   else listOfInputs[i].style.border = "1px solid #b3b3b3";
 }
 
 function enforceNumberValidation(ele) {
@@ -205,5 +201,4 @@ function limitDateInput(){
    for(var i=0; i < dateFields.length; i++){
       dateFields[i].setAttribute("max", today);
    }
-
 }
