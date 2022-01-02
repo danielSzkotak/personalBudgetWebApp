@@ -1,13 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Pushster&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&display=swap');
 
+.mainContainer{
+  margin-left: 1rem;
+  margin-right: 1rem;
+} 
 
 .navbar .display-2{
    font-family: 'Ubuntu Condensed', sans-serif;
 }
 
-ul .btn{
+ul .btn,
+form .btn
+{
    font-family: 'Montserrat', sans-serif;
    font-size: 0.85rem;
 }
@@ -22,7 +29,7 @@ ul .btn{
    padding-bottom: 0.3rem;
 }
 
-.navbar 
+
 .btn:hover,
 .btn:active,
 .btn:focus,
@@ -30,6 +37,43 @@ ul .btn{
   background: #a0cf67 !important;
 }
 
+#main h1{
+   font-family: 'Encode Sans', sans-serif;
+   font-size: 2.2rem;
+   margin-bottom: 2rem;
+}
+
+ul.text-start{
+   padding-left: 0;
+}
+
+#main li{
+   display: inline-block;
+   padding-top: 0;
+   padding-bottom: 0;
+   font-size: 1.5rem;
+   text-decoration: none;
+   letter-spacing: 0.5px;
+   margin-bottom: 0.4rem;
+}
+
+li span{
+   position: relative;
+   left: 20px;
+}
+
+i{
+   font-style: normal;
+}
+ 
+label{
+   font-size: 1.2rem;
+   color: rgb(98, 97, 97);
+} 
+
+/* footer {
+   margin-top: 10rem;
+} */
 
 
 

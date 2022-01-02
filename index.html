@@ -7,24 +7,16 @@
    <title>Mój osobisty budżet</title>
    <link rel="stylesheet" href="css/main.min.css">
    <link rel="stylesheet" href="css/custom.css">
+   <link rel="stylesheet" href="css/fontello.css" type="text/css">
    
-   <style>
-      section{
-         padding: 60px 0;
-      }
-      body{
-         margin-top: 20px;
-         margin: 30px 30px;
-      }
-   </style>
 </head>
 <body>
 
+<div class="mainContainer mb-5">
    <!-- navbar -->
-
    <nav class="navbar navbar-expand-md navbar-light">
-      <div class="container-xxl p-1">
-         <a class="navbar-brand" href="#">
+      <div class="container-xxl p-2 mt-2 mb-5">
+         <a href="#" class="navbar-brand" >
             <img src="img/budget.png" alt="" width="100" height="100" class="d-inline-block align-text-bottom">
             <span class="text-primary display-2">
                twój <span class="text-success">budżet</span>
@@ -32,7 +24,7 @@
          </a>
          <!-- toggle button for mobile nav -->
          <button class="navbar-toggler align-self-end mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            <span class="navbar-toggler-icon fs-3"></span>
           </button>
 
          <!-- navbar links -->
@@ -48,13 +40,62 @@
                   <a href="#" class="nav-link active">Zaloguj się</a>
                </li>
                <li class="nav-item ms-2 d-none d-md-inline">
-                  <a href="#" class="btn btn-outline-light btn-secondary fw-normal bg-light text-primary pt-3 pb-3 ps-4 pe-4" aria-current="page">Zaloguj się</a>
+                  <a href="#" class="btn btn-outline-light fw-normal bg-light text-primary pt-3 pb-3 ps-4 pe-4" aria-current="page">Zaloguj się</a>
                </li>
             </ul>
          </div>
       </div>
    </nav>
+   <!-- main secion -->
+   <section id="main">
+      <div class="container-xxl mt-5">
+         <div class="row justify-content-between">
+            <div class="col-md-6 col-lg-7 text-center">
+               <header>
+                  <h1 class="text-md-start text-center">Zarejestruj się już teraz aby zarządzać swoim budżetem.</h1>
+               </header>
+               <ul class="text-start">
+                  <li><i class="demo-icon icon-ok"><span>Zbierz wszystkie swoje przychody w jednym miejscu.</span></i></li>
+                  <li><i class="demo-icon icon-ok"><span>Rozsądnie kalkuluj swoje wydatki.</span></i></li>
+                  <li><i class="demo-icon icon-ok"><span>Analizuj swój budżet aby lepiej nim zarządzać.</span></i></li>
+                  <li><i class="demo-icon icon-ok"><span>Zacznij już dzisiaj korzystać z aplikacji Twój budżet.</span></i></li>
+               </ul>
+               <img class="img-fluid d-none d-md-block p-5" src="img/mainChart.png" alt="main chart">
+            </div>
+          <!-- fomrm & inputs -->
+            <div class="col-md-6 col-lg pe-3">
+               <form>
+                  <div class="mb-3 mt-5">
+                     <label for="inputName1" class="form-label">Podaj swoje imię</label>
+                     <input type="text" class="form-control fs-5 pt-3 pb-3 shadow-none" id="exampleInputPassword1">
+                   </div>
+                  <div class="mb-3">
+                    <label for="inputEmail1" class="form-label">Podaj swój adres email</label>
+                    <input type="email" class="form-control fs-5 pt-3 pb-3 shadow-none" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">Nigdy nie udostepnimy nikomu twojego adresu</div>
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputPassword1" class="form-label">Utwórz swoje hasło</label>
+                    <input type="password" class="form-control fs-5 pt-3 pb-3 shadow-none" id="exampleInputPassword1">
+                  </div>
+                  
+                  <button type="submit" class="btn btn-light p-3">Zarejestruj się</button>
+                </form>
+            </div>
 
+         </div>
+      </div>
+   </section>
+</div>
+ 
+   <footer>
+      <div class="container-fluid my-5 text-white text-center pt-5 pb-5 bg-dark">
+         <h1>Profesjonalnie buduj swój kapitał osobisty!</h1>
+      </div>
+      <div class="my-5">
+         <h5 class="text-center fs-6">© 2021 Twój budżet osobisty. All rights reserved.</h5>
+      </div>
+   </footer>
 
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
