@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Pushster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Condensed&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
+
+.navbar .display-2{
+   font-family: 'Ubuntu Condensed', sans-serif;
+}
+
+ul .btn{
+   font-family: 'Montserrat', sans-serif;
+   font-size: 0.85rem;
+}
+
+.nav-link{
+   font-family: 'Montserrat', sans-serif;
+   font-size: 0.85rem;
+}
+
+.nav-link:hover {
+   border-bottom: 2px solid rgb(37, 37, 37);
+   padding-bottom: 0.3rem;
+}
+
+.navbar 
+.btn:hover,
+.btn:active,
+.btn:focus,
+.btn.active  {
+  background: #a0cf67 !important;
+}
+
+
+
+
+
+
+
+
