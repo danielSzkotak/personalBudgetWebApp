@@ -24,9 +24,17 @@ form .btn
    font-size: 0.85rem;
 }
 
-.nav-link:hover {
+@media screen and (min-width: 760px) {
+   .nav-link:hover {
    border-bottom: 2px solid rgb(37, 37, 37);
    padding-bottom: 0.3rem;
+   }
+}
+
+@media screen and (max-width: 760px) {
+   .nav-link:hover {
+     opacity: 0.75;
+   }
 }
 
 
@@ -85,9 +93,42 @@ label{
    color: rgb(98, 97, 97);
 } 
 
+.rotate{
+   transition: 0.70s;
+  -webkit-transition: 0.70s;
+  -moz-transition: 0.70s;
+  -ms-transition: 0.70s;
+  -o-transition: 0.70s;
+  display: block;
+  margin-right: 0;
+  margin-left: 0;
+}
 
+.rotate:hover{
+   transition: 0.70s;
+  -webkit-transition: 0.70s;
+  -moz-transition: 0.70s;
+  -ms-transition: 0.70s;
+  -o-transition: 0.70s;
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
 
+.rotate{
+   position: relative;
+   top: 0.3rem;
+}
 
+.dupa a{
+   text-decoration: none;
+   opacity: 0.9;
+}
 
+.dupa a:hover{
+   opacity: 1;
+}
 
 
