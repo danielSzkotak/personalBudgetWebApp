@@ -1,177 +1,243 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta name="description" content="Przeglądaj bilans">
-   <title>Twój budżet - Bilans</title>
-   <link rel="stylesheet" href="css/style.css" type="text/css">
+   <title>Mój osobisty budżet</title>
+   <link rel="stylesheet" href="css/main.min.css">
+   <link rel="stylesheet" href="css/custom.css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Ubuntu+Condensed&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">
-   <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@700&family=Martel:wght@900&family=Montserrat:wght@600&family=Righteous&display=swap" rel="stylesheet">  
-   <link href="http://fonts.cdnfonts.com/css/sofia-pro" rel="stylesheet">
-   <script src="scripts/script.js"></script>
    <script src="https://www.gstatic.com/charts/loader.js"></script>
-   <script src="scripts/charts.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+   <script src="js/throttledresize.js"></script>
+   <script src="js/charts.js"></script>
+   <script src="js/script.js"></script>
+
 </head>
+
 <body onload="limitDateInput()">
-   <div class="container">
-     <nav>
-         <div class="topBar">
-            <a href="index.html" class="logoIndex">
-               <div class="leftBar-logo">
-                  <div class="logoIcon">
-                     <img src="img/budget.png" alt="budżet-ikona">
-                  </div>
-                  <div class="logoLettering">twój <span style="color: #8db856;">budżet</span> </div>
-               </div>
+   <div class="mainContainer mb-5">
+      <!-- navbar -->
+      <nav class="navbar navbar-expand-md navbar-light">
+         <div class="container-xxl p-2 mt-2 mb-5">
+            <a href="#" class="navbar-brand">
+               <img src="img/budget.png" alt="" width="100" height="100" class="d-inline-block align-text-bottom">
+               <span class="text-primary display-2">
+                  twój <span class="text-success">budżet</span>
+               </span>
             </a>
-            <div class="rightBar-menu">
-               <ul class="menu">
-                  <li><a href="help.html" class="regularMenu">Pomoc</a></li>
-                  <li><a href="links.html" class="regularMenu">Ciekawe linki</a></li>
-                  <li><a href="index.html" class="regularMenu">Wyloguj się</a></li>
-                  <li id="alignSettingsIcon">
+            <!-- toggle button for mobile nav -->
+            <button class="navbar-toggler align-self-end mb-2" type="button" data-bs-toggle="collapse"
+               data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false"
+               aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon fs-3"></span>
+            </button>
+
+            <!-- navbar links -->
+            <div class="collapse navbar-collapse mb-1 justify-content-end align-self-end" id="navbarText">
+               <ul class="navbar-nav mb-lg-0">
+                  <li class="nav-item">
+                     <a href="#" class="nav-link text-primary mt-2 me-3">Ciekawe linki</a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="#" class="nav-link text-primary mt-2 me-3">Pomoc</a>
+                  </li>
+                  <li class="nav-item d-md-none mt-2 me-3">
+                     <a href="#" class="nav-link active">Ustawienia</a>
+                  </li>
+                  <li class="nav-item">
+                     <a href="login.html" class="nav-link text-primary mt-2 me-3">Wyloguj się</a>
+                  </li>
+                  <li id="alignSettingsIcon" class="nav-item d-none d-md-inline">
                      <a href="#" class="settings">
-                        <span class="tooltiptext">Zmień swoje ustawienia</span>
                         <span class="rotate"><i class="icon-cog"></i></span>
                      </a>
                   </li>
                </ul>
             </div>
-            <div style="clear: both;"></div>
          </div>
-     </nav>
-     <main>
-        <section>
-          <div class="leftMainInMenu">
-          <h2 class="mainParagraph">Witaj <span class="loggedName">Daniel</span></h2>
-            <a href="#" id="addIncome">DODAJ PRZYCHÓD</a>
-            <a href="addExpense.html" id="addExpense">DODAJ WYDATEK</a>          
-          </div>
-        </section>
-        <section>
-         <div class="rightMainInExpense">
-            <h2 class="mainParagraph">Przeglądaj bilans</h2>
-            <form action="#" class="theForm">
-               <div class="select">
-                  <div class="paymentIcon">
-                     <select name="payment" id="payment" onchange="showDateInputs()">
-                        <option selected value="bieżący miesiąc">Bieżący miesiąc</option>
-                        <option value="poprzedni miesiąc">Poprzedni miesiąc</option>
-                        <option value="bieżący rok">Bieżący rok</option>
-                        <option value="non-standardPeriod">Niestandardowy</option>
-                     </select>
-                     <div class="selectPeriod" id="selectPeriodId">
-                        <p class="selectPeriodParagraph">Wybierz datę początkową</p>
-                        <input class="date" type="date" name="startDate" id="startDate1">
-                        <p class="selectPeriodParagraph">Wybierz datę końcową</p>
-                        <input class="date" type="date" name="endDate" id="endDate1">
-                        <p id="wrongDates"></p>
-                     </div>
+      </nav>
+      <!-- main secion -->
+      <section id="main">
+         <!-- menu section -->
+         <div class="container-xxl mt-5">
+            <div class="row align-items-start">
+               <div class="col-lg-6 align-self-start dupa">
+                  <header>
+                     <h1 class="text-start">Witaj Daniel</h1>
+                  </header>
+                  <div class="row">
+                     <a href="addIncome.html" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                        Dodaj przychód
+                     </a>
+                     <a href="addExpense.html"
+                        class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                        Dodaj rozchód
+                     </a>
                   </div>
                </div>
-               <input type="submit" value="Pokaż bilans" id="showBalanceFromSelectedPeriod" class="submitButton" onclick="checkDates(); return false;">
-            </form>
+               <div class="col ms-lg-5 mt-5 mt-lg-0">
+                  <header>
+                     <h1 class="text-start">Przegladaj bilans</h1>
+                  </header>
+
+                  <form action="#">
+
+                     <div class="mb-3 mb-4">
+                        <label for="selectBalancePeriod" class="form-label">Wybierz okres</label>
+                        <select class="form-select fs-5 pt-3 pb-3" id="selectedBalancePeriod"
+                           onchange="showDateInputs()" aria-label="Default select example" required>
+                           <option value="bieżący miesiąc">Bieżący miesiąc</option>
+                           <option value="poprzedni miesiąc">Poprzedni miesiąc</option>
+                           <option value="bieżacy rok">Bieżacy rok</option>
+                           <option value="non-standardPeriod">Niestandardowy</option>
+                        </select>
+                     </div>
+
+                     <div class="mb-3">
+                        <div class="selectPeriod" id="selectPeriodId">
+                           <label for="startDate1" class="form-label mt-3">Wybierz datę początkową</label>
+                           <input class="form-control fs-5 pt-3 pb-3 shadow-none mb-3" type="date" name="startDate"
+                              id="startDate1">
+                           <label for="endDate1" class="form-label">Wybierz datę końcową</label>
+                           <input class="form-control fs-5 pt-3 pb-3 shadow-none" type="date" name="endDate"
+                              id="endDate1">
+                           <p class="mt-3 text-danger" id="wrongDates"></p>
+                        </div>
+                     </div>
+                     <button type="submit" value="showBalance" class="btn btn-light p-4"
+                        onclick="showBalance(); return false;">Pokaż bilans</button>
+                     <script src="js/script.js"></script>
+                  </form>
+
+               </div>
+            </div>
          </div>
-         <div style="clear: both;"></div>
-        </section>
-        <article>
-          <div id="showBalanceContainer">
-              <h2 id="incomesParagraph"></h2>
-              <table class="customers">
-                  <tr>
-                    <th>Rodzaj przychodu</th>
-                    <th>Suma [zł]</th>
+         <div class="container-xxl mt-5" id="showBalanceContainer">
+            <section id="tables">
+               <header>
+                  <h1 class="text-start" id="selectedPeriodParagraph"></h1>
+               </header>
+               <table class="table table-striped mb-5">
+                  <thead class="fs-4">
+                     <tr>
+                        <th scope="col">Przychody</th>
+                        <th scope="col">Suma [zł]</th>
+                     </tr>
+                  </thead>
+                  <tbody class="fs-5">
+                     <tr>
+                        <td>Wynagrodzenie</td>
+                        <td>3 500</td>
+                     </tr>
+                     <tr>
+                        <td>Inne</td>
+                        <td>1500</td>
+                     </tr>
+                     <tr>
+                        <td>Sprzedaż na allegro</td>
+                        <td>250</td>
+                     </tr>
+                     <tr>
+                        <td>Odsetki bankowe</td>
+                        <td>12,50</td>
+                     </tr>
+                  </tbody>
+                  <tr class="bg-light fs-4">
+                     <th>Suma przychodów</th>
+                     <th>5 262,50</th>
                   </tr>
-                  <tr>
-                    <td>Wynagrodzenie</td>
-                    <td>3500,00</td>
+
+
+               </table>
+
+               <table class="table table-striped mb-5">
+                  <thead class="fs-4">
+                     <tr>
+                        <th scope="col">Wydatki</th>
+                        <th scope="col">Suma [zł]</th>
+                     </tr>
+                  </thead>
+                  <tbody class="fs-5">
+                     <tr>
+                        <td>Mieszkanie</td>
+                        <td>500,00</td>
+                     </tr>
+                     <tr>
+                        <td>Jedzenie</td>
+                        <td>300,00</td>
+                     </tr>
+                     <tr>
+                        <td>Opieka zdrowotna</td>
+                        <td>250,00</td>
+                     </tr>
+                     <tr>
+                        <td>Ubranie</td>
+                        <td>150,00</td>
+                     </tr>
+                     <tr>
+                        <td>Książki</td>
+                        <td>50,00</td>
+                     </tr>
+                     <tr>
+                        <td>Inne wydatki</td>
+                        <td>10,00</td>
+                     </tr>
+                     <tr>
+                        <td>Rozrywka</td>
+                        <td>1,00</td>
+                     </tr>
+                  </tbody>
+                  <tr class="bg-secondary fs-4">
+                     <th>Suma wydatków</th>
+                     <th>1 261,00</th>
                   </tr>
-                  <tr>
-                    <td>Inne</td>
-                    <td>1500,00</td>
-                  </tr>
-                  <tr>
-                    <td>Sprzedaż na allegro</td>
-                    <td>250,00</td>
-                  </tr>
-                  <tr>
-                    <td>Odsetki bankowe</td>
-                    <td>12,50</td>
-                  </tr>  
-                  <tr>
-                    <th>Suma przychodów</th>
-                    <th>5 262,50</th>
-                  </tr>
-                </table>
-                <h2 id="expensesParagraph"></h2>
-                <table class="customers">
-                  <tr>
-                    <th class="ExpenseTh">Rodzaj wydatku</th>
-                    <th class="ExpenseTh">Suma [zł]</th>
-                  </tr>
-                  <tr>
-                    <td>Mieszkanie</td>
-                    <td>500,00</td>
-                  </tr>
-                  <tr>
-                    <td>Jedzenie</td>
-                    <td>300,00</td>
-                  </tr>
-                  <tr>
-                    <td>Opieka zdrowotna</td>
-                    <td>250,00</td>
-                  </tr>
-                  <tr>
-                    <td>Ubranie</td>
-                    <td>150,00</td>
-                  </tr>   
-                  <tr>
-                    <td>Książki</td>
-                    <td>50,00</td>
-                  </tr>
-                  <tr>
-                    <td>Inne wydatki</td>
-                    <td>10,00</td>
-                  </tr>
-                  <tr>
-                    <td>Rozrywka</td>
-                    <td>1,00</td>
-                  </tr>
-                  <tr>
-                    <th class="ExpenseTh">Suma wydatków</th>
-                    <th class="ExpenseTh">1 261,00</th>
-                  </tr>    
-                </table>
-                <h2 id="bilansParagraph"></h2>
-                <table class="customers">
-                    <tr>
-                      <th class="bilans">Twój bilans</th>
-                      <th class="bilans">+ 4 001,50</th>
-                    </tr>                                         
-                  </table>      
-                      <h2 id="expensesChart"></h2>
-                      <div id="piechart1"></div>          
-                      <h2 id="incomesChart"></h2>
-                      <div id="piechart2"></div>                                   
-          </div>
-          <div style="clear: both;"></div>
-        </article>
-     </main>
-     <footer>
-     <div class="sentence">
-        <h2 class="mainParagraph">Profesjonalnie buduj swój kapitał osobisty!</h2>
-     </div>
-     <div class="featuresDescription"></div>
-         <div class="footer">
-           <p>© 2021 Twój budżet osobisty. All rights reserved.</p> 
-         </div>
-     </footer>
-  </div>
+
+               </table>
+               <header>
+                  <h1 class="text-start">Bilans podsumowanie</h1>
+               </header>
+
+               <table class="table mb-5">
+                  <thead>
+                     <tr>
+                        <th></th>
+                        <th></th>
+                     </tr>
+                  </thead>
+                  <tbody class="fs-4">
+                     <tr class="bg-info">
+                        <th>Twój bilans</th>
+                        <th>4 001,50 zł</th>
+                     </tr>
+                  </tbody>
+               </table>
+            </section>
+                  <div class="row">
+                     <div class="col">
+                        <div id="piechart1"></div>          
+                     </div>
+                     <div class="col">
+                        <div id="piechart2"></div> 
+                     </div>
+                  </div>   
+         </div>      
+         <footer>
+            <div class="container-fluid my-5 text-white text-center pt-5 pb-5 bg-dark">
+               <p class="fs-1 fw-bold">Profesjonalnie buduj swój kapitał osobisty!</p>
+            </div>
+            <div class="my-5">
+               <h5 class="text-center fs-6">© 2021 Twój budżet osobisty. All rights reserved.</h5>
+            </div>
+         </footer>
+      </section>
+      
+   </div>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"></script>
 </body>
+
 </html>
