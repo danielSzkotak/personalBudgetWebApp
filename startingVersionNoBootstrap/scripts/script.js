@@ -125,8 +125,6 @@ function showDateInputs(){
          document.getElementById("selectPeriodId").style.display = "none";
       }
    }
-
-
 }
 
 function checkDates(){
@@ -176,6 +174,7 @@ function checkDates(){
          standardPeriodInputFlag = true;
       }
    }
+
    if(standardPeriodInputFlag == true){
      startDate.style.border = "2px solid #8db856";
      endDate.style.border = "2px solid #8db856";

@@ -37,17 +37,28 @@ form .btn
    }
 }
 
-
 .btn:hover,
-.btn:active,
-.btn:focus,
-.btn.active  {
+.btn:active {
   background: #a0cf67 !important;
+}
+
+.btn-danger:hover,
+.btn-danger:active {
+   background: #a72d0f !important;
 }
 
 #main h1{
    font-family: 'Encode Sans', sans-serif;
    margin-bottom: 2rem;
+}
+
+#tables h1{
+   margin-bottom: 1rem;
+}
+
+
+.dupa a{
+   font-family: 'Encode Sans', sans-serif;
 }
 
 ul.text-start{
@@ -90,7 +101,9 @@ i{
 }
  
 label{
-   color: rgb(98, 97, 97);
+   color: rgb(128, 128, 128);
+   font-family: 'Montserrat', sans-serif;
+   font-size: 1rem;
 } 
 
 .rotate{
@@ -131,4 +144,20 @@ label{
    opacity: 1;
 }
 
+table th{
+   width: 60%;
+}
+
+#showBalanceContainer{
+   display: none;
+}
+
+.selectPeriod {
+   display: none;
+}
+
+#addExpenseParagraph{
+   color: rgb(85, 144, 85);
+   display: none;
+}
 
