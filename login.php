@@ -1,3 +1,7 @@
+<?php
+   session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -63,21 +67,24 @@
             </div>
           <!-- fomrm & inputs -->
             <div class="col-md-6 col-lg pe-3">
-               <form action="menu.html" class="needs-validation" novalidate>
+               <form action="login_script.php" method="POST" class="needs-validation" novalidate>
                   <div class="mb-3 mt-5">
                      <label for="inputName1" class="form-label fs-5">Podaj swoje imię</label>
-                     <input type="text" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
+                     <input type="text" name="login" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
                      <div class="invalid-feedback">
                         Wprowadź poprawne imię (min. 4 znaki)
                      </div>
                   </div>
                   <div class="mb-3">
                     <label for="inputPassword1" class="form-label fs-5">Wprowadź swoje hasło</label>
-                    <input type="password" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="5" required>
+                    <input type="password" name="passwd" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="5" required>
                     <div class="invalid-feedback">
                      Wprowadź poprawne hasło (min. 5 znaków)
                   </div> 
                   </div>
+                  <?php
+                     if(isset($_SESSION['login_error'])) echo $_SESSION['login_error'];
+                  ?>
                   <button type="submit" class="btn btn-light p-3">Zaloguj się</button>
                 </form>
                 <script src="js/script.js"></script>

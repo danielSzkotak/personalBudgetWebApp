@@ -1,3 +1,7 @@
+<?php
+   session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -56,7 +60,11 @@
          <div class="row align-items-start">
             <div class="col-lg-6 align-self-start dupa">
                <header>
-                  <h1 class="text-start">Witaj Daniel</h1>
+
+                  <?php
+                     echo "<h1 class='text-start'>Witaj ".$_SESSION['user']."</h1>";
+                  ?>
+                  
                </header>
                <div class="row">
                      <a href="addIncome.html" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
