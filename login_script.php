@@ -25,7 +25,7 @@
         $login = htmlentities($login, ENT_QUOTES, "UTF-8");
         $passwd = htmlentities($passwd, ENT_QUOTES, "UTF-8");
 
-        $sql = "SELECT * FROM users WHERE username='$login' AND password='$passwd'";
+       // $sql = "SELECT * FROM users WHERE username='$login' AND password='$passwd'";
 
         if($result = @$connection->query(sprintf("SELECT * FROM users WHERE username='%s' AND password='%s'",
         //zabezpieczenie przed sql injection
@@ -53,7 +53,7 @@
                 //czyscimy z pamieci RAM serwera nasze zapytania
                 $result->close();
 
-                header('Location: menu.php');
+                header('Location: addIncome.php');
 
             }else{
                 $_SESSION['login_error'] = '<div class="fs-5 text-danger mb-3">Niepoprawna nazwa użytkownika lub hasło</div>';

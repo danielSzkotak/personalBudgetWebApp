@@ -18,8 +18,7 @@
    <link rel="stylesheet" href="css/custom.css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
 </head>
-<body>
-
+<body onload="showTodayIncomeDate()">
 <div class="mainContainer mb-5">
    <!-- navbar -->
    <nav class="navbar navbar-expand-md navbar-light">
@@ -66,10 +65,10 @@
             <div class="col-lg-6 align-self-start dupa">
                <header>
 
-                  <?php
-                     echo "<h1 class='text-start'>Witaj ".$_SESSION['user']."</h1>";
-                  ?>
-                  
+               <?php
+                  echo "<h1 class='text-start'>Witaj ".$_SESSION['user']."</h1>";
+               ?>
+
                </header>
                <div class="row">
                      <a href="addIncome.html" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
@@ -85,8 +84,34 @@
                   </a>
                </div>   
             </div>
-            <div class="col-md-6 col-lg pe-3">
-               <img class="img-fluid d-none d-lg-block p-5" src="img/mainChart.png" alt="main chart">
+            <div class="col ms-lg-5 mt-5 mt-lg-0">
+               <header>
+                  <h1 class="text-start">Dodaj przychód</h1>
+               </header>
+
+               <form action="#" class="needs-validation" id="addIncomeForm" novalidate>
+                  <div class="mb-3 mt-5">
+                     <label for="inputIncome1" class="form-label">Podaj kwotę przychodu</label>
+                     <input type="number" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputExpense1" step="any" required>
+                  </div>
+                  <div class="mb-3">
+                    <label for="inputDate1" class="form-label">Wprowadź datę przychodu</label>
+                    <input type="date" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputDateIncome" aria-describedby="emailHelp" required>               
+                  </div>
+                  <div class="mb-3">  
+                     <label for="selectIncomeCategory" class="form-label">Wybierz kategorię</label>
+                     <select class="form-select fs-5 pt-3 pb-3" id="selectedIncomeCategory" aria-label="Default select example" required>
+                        <option value="1">Wynagrodzenie</option>
+                        <option value="2">Odsetki bankowe</option>
+                        <option value="3">Sprzedaż na allegro</option>
+                        <option value="3">Inne</option>
+                      </select>
+                  </div>
+                  <button type="submit" id="myButton" class="btn btn-light p-3">Dodaj przychód</button>
+                  <button type="button" class="btn btn-danger p-3" onclick="clearInputs()">Wyczyść pola</button>
+                </form>
+             
+                <script src="js/script.js"></script>
             </div>
          </div>
       </div>
