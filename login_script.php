@@ -23,37 +23,44 @@
 
         //zabezpieczenie przed sql injection
         $login = htmlentities($login, ENT_QUOTES, "UTF-8");
-        $passwd = htmlentities($passwd, ENT_QUOTES, "UTF-8");
+        //$passwd = htmlentities($passwd, ENT_QUOTES, "UTF-8");
 
        // $sql = "SELECT * FROM users WHERE username='$login' AND password='$passwd'";
 
-        if($result = @$connection->query(sprintf("SELECT * FROM users WHERE username='%s' AND password='%s'",
+        if($result = @$connection->query(sprintf("SELECT * FROM users WHERE username='%s'",
         //zabezpieczenie przed sql injection
-        mysqli_real_escape_string($connection, $login),
-        mysqli_real_escape_string($connection, $passwd)))){
+        mysqli_real_escape_string($connection, $login)))){
 
             //ile wierszy zwroci zapytanie (1-zalogowano 0-niezalogowano)    
             $how_many_users = $result->num_rows;
             if($how_many_users>0){
                 //zalogowano
-                $_SESSION['loggedIn'] = true;
-                
-                //tworze tablice asocjacyjna (skojarzeniowa)
-                //do ktorej powkladane zostana zmienne o nazwach jak kolumny w bazie
+
                 $row = $result->fetch_assoc();
+                if(password_verify($passwd, $row['password'])){
 
-                $_SESSION['id'] = $row['id'];
+                    $_SESSION['loggedIn'] = true;
+                    
+                    //tworze tablice asocjacyjna (skojarzeniowa)
+                    //do ktorej powkladane zostana zmienne o nazwach jak kolumny w bazie
+                    
 
-                //zapisujemy do sesji dziki czemu moge przekazywac zmienne
-                //miedzy roznymi podstronami
-                $_SESSION['user'] = $row['username']; //dzieki fetch_assoc
+                    $_SESSION['id'] = $row['id'];
 
-                //czyszcze blad logowania z sesji
-                unset($_SESSION['login_error']);
-                //czyscimy z pamieci RAM serwera nasze zapytania
-                $result->close();
+                    //zapisujemy do sesji dziki czemu moge przekazywac zmienne
+                    //miedzy roznymi podstronami
+                    $_SESSION['user'] = $row['username']; //dzieki fetch_assoc
 
-                header('Location: addIncome.php');
+                    //czyszcze blad logowania z sesji
+                    unset($_SESSION['login_error']);
+                    //czyscimy z pamieci RAM serwera nasze zapytania
+                    $result->close();
+
+                    header('Location: addIncome.php');
+                }else{
+                    $_SESSION['login_error'] = '<div class="fs-5 text-danger mb-3">Niepoprawna nazwa użytkownika lub hasło</div>';
+                    header('Location: login.php');
+                }
 
             }else{
                 $_SESSION['login_error'] = '<div class="fs-5 text-danger mb-3">Niepoprawna nazwa użytkownika lub hasło</div>';
