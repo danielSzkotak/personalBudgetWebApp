@@ -1,5 +1,9 @@
 <?php
    session_start();
+   if((isset($_SESSION['loggedIn'])) && ($_SESSION['loggedIn'] == true)){
+      header('Location: addIncome.php');
+      exit();
+   }
 ?>
 
 <!DOCTYPE html>
@@ -40,10 +44,10 @@
                   <a href="#" class="nav-link text-primary mt-2 me-3">Pomoc</a>
                </li>
                <li class="nav-item d-md-none">
-                  <a href="index.html" class="nav-link active">Zarejestruj się</a>
+                  <a href="index.php" class="nav-link active">Zarejestruj się</a>
                </li>
                <li class="nav-item ms-2 d-none d-md-inline">
-                  <a href="index.html" class="btn btn-outline-light fw-normal bg-light text-primary pt-3 pb-3 ps-4 pe-4" aria-current="page">Zarejestruj się</a>
+                  <a href="index.php" class="btn btn-outline-light fw-normal bg-light text-primary pt-3 pb-3 ps-4 pe-4" aria-current="page">Zarejestruj się</a>
                </li>
             </ul>
          </div>

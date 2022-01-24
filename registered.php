@@ -1,3 +1,14 @@
+<?php
+   session_start();
+   if(!isset($_SESSION['registerSuccess'])){
+      header('Location: index.php');
+      exit();
+   }else{
+
+      unset($_SESSION['registerSuccess']);
+   }
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -15,7 +26,7 @@
    <!-- navbar -->
    <nav class="navbar navbar-expand-md navbar-light">
       <div class="container-xxl p-2 mt-2 mb-5">
-         <a href="#" class="navbar-brand" >
+         <a href="index.html" class="navbar-brand" >
             <img src="img/budget.png" alt="" width="100" height="100" class="d-inline-block align-text-bottom">
             <span class="text-primary display-2">
                twój <span class="text-success">budżet</span>
@@ -36,10 +47,10 @@
                   <a href="#" class="nav-link text-primary mt-2 me-3">Pomoc</a>
                </li>
                <li class="nav-item d-md-none">
-                  <a href="login.html" class="nav-link active">Zaloguj się</a>
+                  <a href="index.php" class="nav-link active">Zarejestruj się</a>
                </li>
                <li class="nav-item ms-2 d-none d-md-inline">
-                  <a href="login.html" class="btn btn-outline-light fw-normal bg-light text-primary pt-3 pb-3 ps-4 pe-4" aria-current="page">Zaloguj się</a>
+                  <a href="index.php" class="btn btn-outline-light fw-normal bg-light text-primary pt-3 pb-3 ps-4 pe-4" aria-current="page">Zarejestruj się</a>
                </li>
             </ul>
          </div>
@@ -51,7 +62,7 @@
          <div class="row justify-content-between">
             <div class="col-md-6 col-lg-7 text-center">
                <header>
-                  <h1 class="text-md-start text-center">Zarejestruj się już teraz aby zarządzać swoim budżetem.</h1>
+                  <h1 class="text-md-start text-center">Zaloguj się aby zarządzać swoim budżetem.</h1>
                </header>
                <ul class="text-start">
                   <li><i class="demo-icon icon-ok"><span>Zbierz wszystkie swoje przychody w jednym miejscu.</span></i></li>
@@ -59,34 +70,30 @@
                   <li><i class="demo-icon icon-ok"><span>Analizuj swój budżet aby lepiej nim zarządzać.</span></i></li>
                   <li><i class="demo-icon icon-ok"><span>Zacznij już dzisiaj korzystać z aplikacji Twój budżet.</span></i></li>
                </ul>
-               <img class="img-fluid d-none d-lg-block p-5" src="img/mainChart.png" alt="main chart">
+               <!-- <img class="img-fluid d-none d-lg-block p-5" src="img/mainChart.png" alt="main chart"> -->
             </div>
           <!-- fomrm & inputs -->
             <div class="col-md-6 col-lg pe-3">
-               <form action="login.html" class="needs-validation" novalidate>
+            <h1 class="text-md-start text-center text-success">Dzięki za rejestrację, możesz się zalogować</h1>
+               <form action="login_script.php" method="POST" class="needs-validation" novalidate>
                   <div class="mb-3 mt-5">
                      <label for="inputName1" class="form-label fs-5">Podaj swoje imię</label>
-                     <input type="text" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
+                     <input type="text" name="login" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
                      <div class="invalid-feedback">
                         Wprowadź poprawne imię (min. 4 znaki)
                      </div>
                   </div>
                   <div class="mb-3">
-                    <label for="inputEmail1" class="form-label fs-5">Podaj swój adres email</label>
-                    <input type="email" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputEmail1" aria-describedby="emailHelp" required>
-                    <div class="invalid-feedback">
-                     Wprowadź poprawny adres e-mail
-                  </div>
-                    <div id="emailHelp" class="form-text">Nigdy nie udostepnimy nikomu twojego adresu</div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="inputPassword1" class="form-label fs-5">Utwórz swoje hasło</label>
-                    <input type="password" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="5" required>
+                    <label for="inputPassword1" class="form-label fs-5">Wprowadź swoje hasło</label>
+                    <input type="password" name="passwd" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="5" required>
                     <div class="invalid-feedback">
                      Wprowadź poprawne hasło (min. 5 znaków)
                   </div> 
                   </div>
-                  <button type="submit" class="btn btn-light p-3">Zarejestruj się</button>
+                  <?php
+                     if(isset($_SESSION['login_error'])) echo $_SESSION['login_error'];
+                  ?>
+                  <button type="submit" class="btn btn-light p-3">Zaloguj się</button>
                 </form>
                 <script src="js/script.js"></script>
             </div>
