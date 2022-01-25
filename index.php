@@ -32,6 +32,12 @@
 
       $passwd_hash = password_hash($passwd, PASSWORD_DEFAULT);
 
+      //zapamiętaj wprowadzone dane
+      $_SESSION['fr_nick'] = $nick;
+      $_SESSION['fr_emial'] = $email;
+      $_SESSION['fr_passwd'] = $passwd;
+
+
       require_once('connect.php');
       //ustawiamy sposób raportowania błędów
       //tylko moje wyjatki
@@ -158,7 +164,11 @@
                <form method="POST" class="needs-validation" novalidate>
                   <div class="mb-3 mt-5">
                      <label for="inputName1" class="form-label fs-5">Podaj nazwę użytkownika</label>
-                     <input type="text" name="nick" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
+                     <input type="text" name="nick" value="<?php if(isset($_SESSION['fr_nick'])){
+                        echo $_SESSION['fr_nick'];
+                        unset($_SESSION['fr_nick']);
+                     } ?>" 
+                     class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
                      <div class="invalid-feedback">
                         Wprowadź poprawną nazwę (min. 4 znaki)
                      </div>
@@ -171,7 +181,10 @@
                   </div>
                   <div class="mb-3">
                     <label for="inputEmail1" class="form-label fs-5">Podaj swój adres email</label>
-                    <input type="email" name="email" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputEmail1" aria-describedby="emailHelp" required>
+                    <input type="email" name="email" value="<?php if(isset($_SESSION['fr_email'])){
+                        echo $_SESSION['fr_email'];
+                        unset($_SESSION['fr_email']);
+                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputEmail1" aria-describedby="emailHelp" required>
                     <div class="invalid-feedback">
                      Wprowadź poprawny adres e-mail
                   </div>
@@ -185,7 +198,10 @@
                   </div>
                   <div class="mb-3">
                     <label for="inputPassword1" class="form-label fs-5">Utwórz swoje hasło</label>
-                    <input type="password" name="passwd" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="8" required>
+                    <input type="password" name="passwd" value="<?php if(isset($_SESSION['fr_passwd'])){
+                        echo $_SESSION['fr_passwd'];
+                        unset($_SESSION['fr_passwd']);
+                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="8" required>
                     <div class="invalid-feedback">
                      Wprowadź poprawne hasło (min. 8 znaków)
                   </div> 
