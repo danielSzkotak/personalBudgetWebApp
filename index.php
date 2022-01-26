@@ -128,10 +128,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="inputPassword1" class="form-label fs-5">Utwórz swoje hasło</label>
-                    <input type="password" name="passwd" value="<?php if(isset($_SESSION['fr_passwd'])){
-                        echo $_SESSION['fr_passwd'];
-                        unset($_SESSION['fr_passwd']);
-                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="8" required>
+                    <input type="password" name="passwd" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="8" required>
                     <div class="invalid-feedback">
                      Wprowadź poprawne hasło (min. 8 znaków)
                   </div> 

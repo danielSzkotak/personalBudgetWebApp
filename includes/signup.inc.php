@@ -12,8 +12,6 @@ if(isset($_POST["submit"])){
    //Remember form inputs
    $_SESSION['fr_nick'] = $uid;
    $_SESSION['fr_email'] = $email;
-   $_SESSION['fr_passwd'] = $passwd;
-
 
    //Instantiatate SignUpController class
    include "../classes/dbh.classes.php";
@@ -28,7 +26,6 @@ if(isset($_POST["submit"])){
    //Clearing remembered input
    if (isset($_SESSION['fr_nick'])) unset($_SESSION['fr_nick']);
    if (isset($_SESSION['fr_email'])) unset($_SESSION['fr_email']);
-   if (isset($_SESSION['fr_passwd'])) unset($_SESSION['fr_passwd']);
 
    //Clearing errors
    if (isset($_SESSION['e_nick'])) unset($_SESSION['e_nick']);
