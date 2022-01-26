@@ -19,6 +19,22 @@
  })()
 
 
+function clearInputs(){
+  var forms = document.querySelectorAll('.needs-validation');
+  Array.prototype.slice.call(forms)
+  .forEach(function (form) {
+    form.addEventListener('submit', function (event) {
+     
+      if (!form.checkValidity()) {
+           
+        event.preventDefault()
+        event.stopPropagation()   
+      }
+      form.classList.add('was-validated')
+    }, false)
+  })
+}
+
  function loadCurrentDate(){
   var today = new Date();
   var dd = ("0" + (today.getDate())).slice(-2);

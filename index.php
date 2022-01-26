@@ -74,34 +74,56 @@
                         echo $_SESSION['fr_nick'];
                         unset($_SESSION['fr_nick']);
                      } ?>" 
-                     class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
+                     class="form-control fs-5 pt-3 pb-3 shadow-none
+                        <?php
+                           if(isset($_SESSION['e_nick'])) {
+                              echo 'is-invalid';
+                           }
+                        ?>
+                     " id="inputName1" minlength="4" required>
                      <div class="invalid-feedback">
-                        Wprowadź poprawną nazwę (min. 4 znaki)
-                     </div>
                      <?php
-                     if(isset($_SESSION['e_nick'])) {
-                        echo '<div class="fs-5 text-danger mb-3">'.$_SESSION['e_nick'].'</div>';
-                        unset($_SESSION['e_nick']);
-                     }
+                     
+                        if(isset($_SESSION['e_nick'])) {
+                           echo $_SESSION['e_nick'];
+                           unset($_SESSION['e_nick']); 
+                        } else {
+                           echo 'Wprowadź poprawną nazwę (min. 4 znaki)';
+                        }
                      ?>
+                     </div>                     
                   </div>
                   <div class="mb-3">
                     <label for="inputEmail1" class="form-label fs-5">Podaj swój adres email</label>
                     <input type="email" name="email" value="<?php if(isset($_SESSION['fr_email'])){
                         echo $_SESSION['fr_email'];
                         unset($_SESSION['fr_email']);
-                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputEmail1" aria-describedby="emailHelp" required>
+                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none
+                           <?php
+                           if(isset($_SESSION['e_email'])) {
+                              echo 'is-invalid';
+                           }
+                           ?>                    
+                     " id="inputEmail1" aria-describedby="emailHelp" required>
                     <div class="invalid-feedback">
-                     Wprowadź poprawny adres e-mail
+                    <?php
+                     
+                        if(isset($_SESSION['e_email'])) {
+                           echo $_SESSION['e_email'];
+                           unset($_SESSION['e_email']); 
+                        } else {
+                           echo 'Wprowadź poprawną nazwę email';
+                        }
+                     ?>
                   </div>
-                  <div class="xxx">
+                  
                   <?php
                      if(isset($_SESSION['e_email'])) {
                         echo '<div class="fs-5 text-danger mb-3">'.$_SESSION['e_email'].'</div>';
                         unset($_SESSION['e_email']);
                      }
                   ?>
-                  </div>
+                  
                   <div id="emailHelp" class="form-text">Nigdy nie udostepnimy nikomu twojego adresu</div>
                   </div>
                   <div class="mb-3">
@@ -115,12 +137,12 @@
                   </div> 
                   <?php
                      if(isset($_SESSION['e_passwd'])) {
-                        echo '<div class="fs-5 text-danger mb-3" id="xxx">'.$_SESSION['e_passwd'].'</div>';
+                        echo '<div class="fs-5 text-danger mb-3">'.$_SESSION['e_passwd'].'</div>';
                         unset($_SESSION['e_passwd']);
                      }
                   ?>
                   </div>                 
-                  <button type="submit" name="submit" class="btn btn-light p-3">Zarejestruj się</button>
+                  <button type="submit" name="submit" class="btn btn-light p-3" onclick="clearInputs();">Zarejestruj się</button>
                 </form>
                 <script src="js/script.js"></script>
             </div>

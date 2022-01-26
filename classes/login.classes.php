@@ -14,7 +14,8 @@ class Login extends Dbh {
       if($stmt->rowCount() == 0){
 
          $stmt = NULL;
-         header("location: ../login.php?error=usernotfound");
+         header("location: ../login.php");
+         $_SESSION['login_error'] = 'Błędna nazwa użytkownika lub hasło';
          exit();
       }
 
@@ -25,6 +26,7 @@ class Login extends Dbh {
 
          $stmt = NULL;
          header("location: ../login.php?error=usernotfound");
+         $_SESSION['login_error'] = 'Błędna nazwa użytkownika lub hasło';
          exit();
 
       } elseif ($checkPwd == true){
@@ -41,6 +43,7 @@ class Login extends Dbh {
 
             $stmt = NULL;
             header("location: ../login.php?error=usernotfound");
+            $_SESSION['login_error'] = 'Błędna nazwa użytkownika lub hasło';
             exit();
          }
 

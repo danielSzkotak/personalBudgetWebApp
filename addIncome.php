@@ -66,7 +66,7 @@
                <header>
 
                <?php
-                  echo "<h1 class='text-start'>Witaj ".$_SESSION['useruid']."</h1>";
+                  echo "<span><h1 class='text-start'>Witaj <span class='text-success'>".$_SESSION['useruid']."</span></h1></span>";
                ?>
 
                </header>

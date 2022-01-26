@@ -4,6 +4,7 @@
       header('Location: addIncome.php');
       exit();
    }
+
 ?>
 
 <!DOCTYPE html>
@@ -73,22 +74,47 @@
             <div class="col-md-6 col-lg pe-3">
                <form action="includes/login.inc.php" method="POST" class="needs-validation" novalidate>
                   <div class="mb-3 mt-5">
+                     <?php
+                        if(isset($_SESSION['register_success'])){
+                           echo '<h1 class="text-md-start text-center text-success">Udana rejestracja, możesz się zalogować</h1>';
+                           unset($_SESSION['register_success']);
+                        }
+                     ?>
                      <label for="inputName1" class="form-label fs-5">Podaj swoje imię</label>
-                     <input type="text" name="uid" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
-                     <div class="invalid-feedback">
-                        Wprowadź poprawne imię (min. 4 znaki)
-                     </div>
+                     <input type="text" name="uid" class="form-control fs-5 pt-3 pb-3 shadow-none
+                     <?php
+                           if(isset($_SESSION['login_error'])) {
+                              echo 'is-invalid';
+                           }
+                        ?>
+                     " id="inputName1" minlength="4" required value="<?php if(isset($_SESSION['fl_nick'])){
+                        echo $_SESSION['fl_nick'];
+                        unset($_SESSION['fl_nick']);
+                     } ?>">
+                     <!-- <div class="invalid-feedback">
+                         Wprowadź poprawną nazwę użytkownika 
+                     </div> -->
                   </div>
                   <div class="mb-3">
                     <label for="inputPassword1" class="form-label fs-5">Wprowadź swoje hasło</label>
-                    <input type="password" name="passwd" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="5" required>
+                    <input type="password" name="passwd" class="form-control fs-5 pt-3 pb-3 shadow-none
+                        <?php
+                              if(isset($_SESSION['login_error'])) {
+                                 echo 'is-invalid';
+                              }
+                           ?>
+                    " id="inputPassword1" minlength="5" required>
                     <div class="invalid-feedback">
-                     Wprowadź poprawne hasło (min. 5 znaków)
+                    <?php
+                        if(isset($_SESSION['login_error'])) {
+                           echo $_SESSION['login_error'];
+                           unset($_SESSION['login_error']); 
+                        } else {
+                           echo 'Wprowadź poprawną nazwę użytkownika i hasło';
+                        }
+                     ?>
                   </div> 
                   </div>
-                  <?php
-                     if(isset($_SESSION['login_error'])) echo $_SESSION['login_error'];
-                  ?>
                   <button type="submit" name="submit" class="btn btn-light p-3">Zaloguj się</button>             
                
                </form>

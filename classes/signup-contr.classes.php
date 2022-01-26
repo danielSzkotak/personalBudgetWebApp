@@ -20,21 +20,31 @@ class SignupContr extends Signup{
       }
 
       if($this->invalidUid() == false){
-         header("location: ../index.php?error=username");
+         header("location: ../index.php");
+         $_SESSION['e_nick'] = 'Wprowadź poprawną nazwę użytkownika (bez znaków specjalnych)';
          exit();
       }
 
       if($this->invalidEmail() == false){
-         header("location: ../index.php?error=email");
+         header("location: ../index.php");
+         $_SESSION['e_email'] = 'Wprowadź poprawny adres email';
          exit();
       }
 
       if($this->uidTakenCheck() == false){
-         header("location: ../index.php?error=useroremailtaken");
+         header("location: ../index.php");
+         $_SESSION['e_nick'] = 'Taki użytkownik jest już zajęty';
+         exit();
+      }
+
+      if($this->emailTakenCheck() == false){
+         header("location: ../index.php");
+         $_SESSION['e_email'] = 'Taki adres email jest już zajęty';
          exit();
       }
 
       $this->setUser($this->uid, $this->passwd, $this->email);
+      $_SESSION['register_success'] = true;
    }
 
    private function emptyInputs(){
@@ -69,7 +79,7 @@ class SignupContr extends Signup{
 
    private function uidTakenCheck(){
       
-      if(!$this->checkUser($this->uid, $this->email)){
+      if(!$this->checkUser($this->uid)){
          $result = false;
       } else {
          $result = true;
@@ -77,5 +87,14 @@ class SignupContr extends Signup{
       return $result;
    }
 
+   private function emailTakenCheck(){
+      
+      if(!$this->checkEmail($this->email)){
+         $result = false;
+      } else {
+         $result = true;
+      }
+      return $result;
+   }
 
 }
