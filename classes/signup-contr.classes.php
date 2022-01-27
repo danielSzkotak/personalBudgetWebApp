@@ -44,6 +44,7 @@ class SignupContr extends Signup{
       }
 
       $this->setUser($this->uid, $this->passwd, $this->email);
+      $this->setCategories($this->uid);
       $_SESSION['register_success'] = true;
    }
 
