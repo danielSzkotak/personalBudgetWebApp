@@ -1,7 +1,7 @@
 <?php
    session_start();
 
-   if(!isset($_SESSION['loggedIn'])){
+   if(!isset($_SESSION['useruid'])){
       header('Location: login.php');
       exit();
    }
@@ -47,7 +47,7 @@
                   <a href="#" class="nav-link active">Ustawienia</a>
                </li>
                <li class="nav-item">
-                  <a href="logout.php" class="nav-link text-primary mt-2 me-3">Wyloguj się</a>
+                  <a href="includes/logout.inc.php" class="nav-link text-primary mt-2 me-3">Wyloguj się</a>
                </li>
                <li id="alignSettingsIcon" class="nav-item d-none d-md-inline">
                   <a href="#" class="settings">
@@ -66,7 +66,7 @@
                <header>
 
                <?php
-                  echo "<h1 class='text-start'>Witaj ".$_SESSION['user']."</h1>";
+                  echo "<span><h1 class='text-start'>Witaj <span class='text-success'>".$_SESSION['useruid']."</span></h1></span>";
                ?>
 
                </header>

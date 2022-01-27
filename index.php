@@ -1,99 +1,5 @@
 <?php
    session_start();
-
-   if(isset($_POST['email'])){
-      //udana walidacja
-      $isRegister = true;
-
-      $nick = $_POST['nick'];
-
-      if((strlen($nick)<4) || (strlen($nick)>25)){
-         $isRegister = false;
-         $_SESSION['e_nick'] = "Wprowadź nazwę od 4 do 25 znaków";
-      }
-
-      if(ctype_alnum($nick)==false){
-         $isRegister = false;
-         $_SESSION['e_nick'] = "Wprowadź tylko litery lub cyfry bez polskich znaków";
-      }
-
-      $email = $_POST['email'];
-      $emailSanitized = filter_var($email, FILTER_SANITIZE_EMAIL);
-      if((filter_var($emailSanitized, FILTER_VALIDATE_EMAIL)==false)||($email!=$emailSanitized)){
-         $isRegister = false;
-         $_SESSION['e_email'] = "Wprowadź poprawny adres email";
-      }
-
-      $passwd = $_POST['passwd'];
-      if((strlen($passwd)<8) || (strlen($passwd))>25){
-         $isRegister = false;
-         $_SESSION['e_passwd'] = "Hasło musi posiadać min. 8 znaków";
-      }
-
-      $passwd_hash = password_hash($passwd, PASSWORD_DEFAULT);
-
-      //zapamiętaj wprowadzone dane
-      $_SESSION['fr_nick'] = $nick;
-      $_SESSION['fr_emial'] = $email;
-      $_SESSION['fr_passwd'] = $passwd;
-
-
-      require_once('connect.php');
-      //ustawiamy sposób raportowania błędów
-      //tylko moje wyjatki
-      mysqli_report(MYSQLI_REPORT_STRICT);
-
-         //LACZYMY SIE Z BAZA
-      try{
-         $connection = new mysqli($host, $db_user, $db_password, $db_name);
-         if($connection->connect_errno != 0){
-            //Brak polaczenia
-            throw new Exception(mysqli_connect_errno());
-
-         }else{
-
-            //czy istnieje email
-            $result = $connection->query("SELECT id FROM users WHERE email='$email'");
-            if(!$result) throw new Exception($connection->error);
-            $how_many_emails = $result->num_rows;
-            if($how_many_emails>0){
-               $isRegister = false;
-               $_SESSION['e_email'] = "Istnieje już konto o takim adresie email";
-            }
-
-            //czy istnieje user
-            $result = $connection->query("SELECT id FROM users WHERE username='$nick'");
-            if(!$result) throw new Exception($connection->error);
-            $how_many_nicks = $result->num_rows;
-            if($how_many_nicks>0){
-               $isRegister = false;
-               $_SESSION['e_nick'] = "Istnieje już taka nazwa użytkownika";
-            }
-
-            if($isRegister==true){
-               
-               if($connection->query("INSERT INTO users VALUES (NULL,'$nick','$passwd_hash','$email')")){
-
-                  $_SESSION['registerSuccess'] = true;
-                  header('Location: registered.php');
-
-               }else{
-                  throw new Exception($connection->error);
-               }
-
-               exit();
-            }
-
-            $connection->close();
-         }
-      }
-      catch(Exception $e){
-         echo '<h3 class="text-danger">Wystąpił błąd serwera - przeprawszamy już nad tym pracujemy</h3></br>';
-         //echo $e.' - info deweloperskie'; - pokazuj tylko w wersji deweloperskiej
-      }
-
-      
-   }
 ?>
 
 <!DOCTYPE html>
@@ -161,47 +67,68 @@
             </div>
           <!-- fomrm & inputs -->
             <div class="col-md-6 col-lg pe-3">
-               <form method="POST" class="needs-validation" novalidate>
+               <form method="POST" action="includes/signup.inc.php" class="needs-validation" novalidate>
                   <div class="mb-3 mt-5">
                      <label for="inputName1" class="form-label fs-5">Podaj nazwę użytkownika</label>
-                     <input type="text" name="nick" value="<?php if(isset($_SESSION['fr_nick'])){
+                     <input type="text" name="uid" value="<?php if(isset($_SESSION['fr_nick'])){
                         echo $_SESSION['fr_nick'];
                         unset($_SESSION['fr_nick']);
                      } ?>" 
-                     class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputName1" minlength="4" required>
+                     class="form-control fs-5 pt-3 pb-3 shadow-none
+                        <?php
+                           if(isset($_SESSION['e_nick'])) {
+                              echo 'is-invalid';
+                           }
+                        ?>
+                     " id="inputName1" minlength="4" required>
                      <div class="invalid-feedback">
-                        Wprowadź poprawną nazwę (min. 4 znaki)
-                     </div>
                      <?php
-                     if(isset($_SESSION['e_nick'])) {
-                        echo '<div class="fs-5 text-danger mb-3">'.$_SESSION['e_nick'].'</div>';
-                        unset($_SESSION['e_nick']);
-                     }
+                     
+                        if(isset($_SESSION['e_nick'])) {
+                           echo $_SESSION['e_nick'];
+                           unset($_SESSION['e_nick']); 
+                        } else {
+                           echo 'Wprowadź poprawną nazwę (min. 4 znaki)';
+                        }
                      ?>
+                     </div>                     
                   </div>
                   <div class="mb-3">
                     <label for="inputEmail1" class="form-label fs-5">Podaj swój adres email</label>
                     <input type="email" name="email" value="<?php if(isset($_SESSION['fr_email'])){
                         echo $_SESSION['fr_email'];
                         unset($_SESSION['fr_email']);
-                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputEmail1" aria-describedby="emailHelp" required>
+                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none
+                           <?php
+                           if(isset($_SESSION['e_email'])) {
+                              echo 'is-invalid';
+                           }
+                           ?>                    
+                     " id="inputEmail1" aria-describedby="emailHelp" required>
                     <div class="invalid-feedback">
-                     Wprowadź poprawny adres e-mail
+                    <?php
+                     
+                        if(isset($_SESSION['e_email'])) {
+                           echo $_SESSION['e_email'];
+                           unset($_SESSION['e_email']); 
+                        } else {
+                           echo 'Wprowadź poprawną nazwę email';
+                        }
+                     ?>
                   </div>
+                  
                   <?php
                      if(isset($_SESSION['e_email'])) {
                         echo '<div class="fs-5 text-danger mb-3">'.$_SESSION['e_email'].'</div>';
                         unset($_SESSION['e_email']);
                      }
                   ?>
+                  
                   <div id="emailHelp" class="form-text">Nigdy nie udostepnimy nikomu twojego adresu</div>
                   </div>
                   <div class="mb-3">
                     <label for="inputPassword1" class="form-label fs-5">Utwórz swoje hasło</label>
-                    <input type="password" name="passwd" value="<?php if(isset($_SESSION['fr_passwd'])){
-                        echo $_SESSION['fr_passwd'];
-                        unset($_SESSION['fr_passwd']);
-                     } ?>" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="8" required>
+                    <input type="password" name="passwd" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputPassword1" minlength="8" required>
                     <div class="invalid-feedback">
                      Wprowadź poprawne hasło (min. 8 znaków)
                   </div> 
@@ -211,9 +138,8 @@
                         unset($_SESSION['e_passwd']);
                      }
                   ?>
-                  </div>
-                  
-                  <button type="submit" class="btn btn-light p-3">Zarejestruj się</button>
+                  </div>                 
+                  <button type="submit" name="submit" class="btn btn-light p-3" onclick="clearInputs();">Zarejestruj się</button>
                 </form>
                 <script src="js/script.js"></script>
             </div>
