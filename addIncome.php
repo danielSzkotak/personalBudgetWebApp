@@ -5,6 +5,9 @@
       header('Location: login.php');
       exit();
    }
+
+   $user_id = $_SESSION['userid'];
+        
 ?>
 
 <!DOCTYPE html>
@@ -100,12 +103,18 @@
                   </div>
                   <div class="mb-3">  
                      <label for="selectIncomeCategory" class="form-label">Wybierz kategorię</label>
+                     
+                     
                      <select class="form-select fs-5 pt-3 pb-3" id="selectedIncomeCategory" aria-label="Default select example" required>
-                        <option value="1">Wynagrodzenie</option>
+                        <!-- <option value="1">Wynagrodzenie</option>
                         <option value="2">Odsetki bankowe</option>
                         <option value="3">Sprzedaż na allegro</option>
-                        <option value="3">Inne</option>
-                      </select>
+                        <option value="3">Inne</option> -->
+
+                        
+
+                     </select>
+
                   </div>
                   <button type="submit" id="myButton" class="btn btn-light p-3">Dodaj przychód</button>
                   <button type="button" class="btn btn-danger p-3" onclick="clearInputs()">Wyczyść pola</button>
@@ -123,9 +132,20 @@
       </div>
       <div class="my-5">
          <h5 class="text-center fs-6">© 2021 Twój budżet osobisty. All rights reserved.</h5>
+
+         <?php 
+            //print_r ($_SESSION['categories']); 
+
+            foreach ($_SESSION['categories'] as $name)
+            { 
+            echo $name['name'];
+            }
+           
+
+         ?>
+
       </div>
    </footer>
-
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
