@@ -1,6 +1,6 @@
 <?php
 
-class Income extends Login{
+class IncomeManager extends Categories{
 
    private $uID; 
    
@@ -9,9 +9,9 @@ class Income extends Login{
       $this->uID = $uID;
    }
 
-   public function getUserCategories(){
+   public function getUserIncomesCategories(){
 
-      $this->getCategories($this->uID);    
+      $this->getIncomeCategories($this->uID);    
    }
 
 }

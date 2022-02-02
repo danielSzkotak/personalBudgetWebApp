@@ -1,4 +1,9 @@
 <?php
+
+   include "classes/dbh.classes.php";
+   include "classes/categories.classes.php";
+   include "classes/income-manager.classes.php";
+
    session_start();
 
    if(!isset($_SESSION['useruid'])){
@@ -6,8 +11,13 @@
       exit();
    }
 
-   $user_id = $_SESSION['userid'];
-        
+   //$user_id = $_SESSION['userid'];
+
+   //AddingCategories
+   $income = new IncomeManager($_SESSION['userid']);
+   $income->getUserIncomesCategories();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -134,13 +144,10 @@
          <h5 class="text-center fs-6">© 2021 Twój budżet osobisty. All rights reserved.</h5>
 
          <?php 
-            //print_r ($_SESSION['categories']); 
-
-            foreach ($_SESSION['categories'] as $name)
-            { 
-            echo $name['name'];
-            }
-           
+    
+            foreach ($_SESSION['categories'] as $value){
+               echo $value;
+            }      
 
          ?>
 
