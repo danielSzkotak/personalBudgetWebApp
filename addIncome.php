@@ -84,15 +84,15 @@
 
                </header>
                <div class="row">
-                     <a href="addIncome.html" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                     <a href="addIncome.php" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
                         Dodaj przychód 
                      </a>
-                  <a href="addExpense.html" class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                  <a href="addExpense.php" class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
                      Dodaj rozchód
                   </a>
                </div>
                <div class="row">
-                  <a href="balancePeriod.html" class="col bg-info me-2 p-5 rounded-3 text-center text-nowrap text-white fs-2">
+                  <a href="balancePeriod.php" class="col bg-info me-2 p-5 rounded-3 text-center text-nowrap text-white fs-2">
                      Przeglądaj bilans
                   </a>
                </div>   
@@ -116,12 +116,12 @@
                      
                      
                      <select class="form-select fs-5 pt-3 pb-3" id="selectedIncomeCategory" aria-label="Default select example" required>
-                        <!-- <option value="1">Wynagrodzenie</option>
-                        <option value="2">Odsetki bankowe</option>
-                        <option value="3">Sprzedaż na allegro</option>
-                        <option value="3">Inne</option> -->
-
-                        
+                  
+                     <?php        
+                        foreach( $_SESSION['incomesCategories'] as $option){ 
+                           echo "<option value='$option'>$option</option>";
+                        }             
+                     ?>
 
                      </select>
 
@@ -142,15 +142,6 @@
       </div>
       <div class="my-5">
          <h5 class="text-center fs-6">© 2021 Twój budżet osobisty. All rights reserved.</h5>
-
-         <?php 
-    
-            foreach ($_SESSION['categories'] as $value){
-               echo $value;
-            }      
-
-         ?>
-
       </div>
    </footer>
 
