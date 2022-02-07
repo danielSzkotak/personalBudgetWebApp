@@ -6,7 +6,7 @@ class LoginContr extends Login{
    private $passwd;
    
    public function __construct($uid, $passwd){
-
+  
       $this->uid = $uid;
       $this->passwd = $passwd;
    }
@@ -18,7 +18,10 @@ class LoginContr extends Login{
       }
 
       $this->getUser($this->uid, $this->passwd);
+    
    }
+
+ 
 
    private function emptyInputs(){
 

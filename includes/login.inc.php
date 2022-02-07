@@ -15,6 +15,7 @@ if(isset($_POST["submit"])){
    include "../classes/dbh.classes.php";
    include "../classes/login.classes.php";
    include "../classes/login-contr.classes.php";
+   //include "../classes/income-manager.classes.php";
    $login = new LoginContr($uid, $passwd);
 
    //Running error handlers and user login

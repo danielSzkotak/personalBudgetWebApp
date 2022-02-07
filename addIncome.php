@@ -1,10 +1,23 @@
 <?php
+
+   include "classes/dbh.classes.php";
+   include "classes/categories.classes.php";
+   include "classes/income-manager.classes.php";
+
    session_start();
 
    if(!isset($_SESSION['useruid'])){
       header('Location: login.php');
       exit();
    }
+
+   //$user_id = $_SESSION['userid'];
+
+   //AddingCategories
+   $income = new IncomeManager($_SESSION['userid']);
+   $income->getUserIncomesCategories();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -71,15 +84,15 @@
 
                </header>
                <div class="row">
-                     <a href="addIncome.html" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                     <a href="addIncome.php" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
                         Dodaj przychód 
                      </a>
-                  <a href="addExpense.html" class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                  <a href="addExpense.php" class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
                      Dodaj rozchód
                   </a>
                </div>
                <div class="row">
-                  <a href="balancePeriod.html" class="col bg-info me-2 p-5 rounded-3 text-center text-nowrap text-white fs-2">
+                  <a href="balancePeriod.php" class="col bg-info me-2 p-5 rounded-3 text-center text-nowrap text-white fs-2">
                      Przeglądaj bilans
                   </a>
                </div>   
@@ -100,12 +113,18 @@
                   </div>
                   <div class="mb-3">  
                      <label for="selectIncomeCategory" class="form-label">Wybierz kategorię</label>
+                     
+                     
                      <select class="form-select fs-5 pt-3 pb-3" id="selectedIncomeCategory" aria-label="Default select example" required>
-                        <option value="1">Wynagrodzenie</option>
-                        <option value="2">Odsetki bankowe</option>
-                        <option value="3">Sprzedaż na allegro</option>
-                        <option value="3">Inne</option>
-                      </select>
+                  
+                     <?php        
+                        foreach( $_SESSION['incomesCategories'] as $option){ 
+                           echo "<option value='$option'>$option</option>";
+                        }             
+                     ?>
+
+                     </select>
+
                   </div>
                   <button type="submit" id="myButton" class="btn btn-light p-3">Dodaj przychód</button>
                   <button type="button" class="btn btn-danger p-3" onclick="clearInputs()">Wyczyść pola</button>
@@ -125,7 +144,6 @@
          <h5 class="text-center fs-6">© 2021 Twój budżet osobisty. All rights reserved.</h5>
       </div>
    </footer>
-
 
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>

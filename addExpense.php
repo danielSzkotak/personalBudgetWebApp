@@ -1,3 +1,24 @@
+<?php
+
+   include "classes/dbh.classes.php";
+   include "classes/categories.classes.php";
+   include "classes/expense-manager.classes.php";
+
+   session_start();
+
+   if(!isset($_SESSION['useruid'])){
+      header('Location: login.php');
+      exit();
+   }
+
+   //AddingCategories & paymentMethods
+   $expense = new ExpenseManager($_SESSION['userid']);
+   $expense->getUserExpenseCategories();
+   $expense->getUserPaymentMethods();
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -38,7 +59,7 @@
                   <a href="#" class="nav-link active">Ustawienia</a>
                </li>
                <li class="nav-item">
-                  <a href="login.html" class="nav-link text-primary mt-2 me-3">Wyloguj się</a>
+                  <a href="includes/logout.inc.php" class="nav-link text-primary mt-2 me-3">Wyloguj się</a>
                </li>
                <li id="alignSettingsIcon" class="nav-item d-none d-md-inline">
                   <a href="#" class="settings">
@@ -55,18 +76,20 @@
          <div class="row align-items-start">
             <div class="col-lg-6 align-self-start dupa">
                <header>
-                  <h1 class="text-start">Witaj Daniel</h1>
+               <?php
+                  echo "<span><h1 class='text-start'>Witaj <span class='text-success'>".$_SESSION['useruid']."</span></h1></span>";
+               ?>
                </header>
                <div class="row">
-                     <a href="addIncome.html" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                     <a href="addIncome.php" class="col bg-light mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
                         Dodaj przychód 
                      </a>
-                  <a href="addExpense.html" class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
+                  <a href="addExpense.php" class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
                      Dodaj rozchód
                   </a>
                </div>
                <div class="row">
-                  <a href="balancePeriod.html" class="col bg-info me-2 p-5 rounded-3 text-center text-nowrap text-white fs-2">
+                  <a href="balancePeriod.php" class="col bg-info me-2 p-5 rounded-3 text-center text-nowrap text-white fs-2">
                      Przeglądaj bilans
                   </a>
                </div>   
@@ -88,31 +111,23 @@
                   <div class="mb-3">  
                      <label for="selectPaymantMethod" class="form-label">Wybierz metodę płatności</label>
                      <select class="form-select fs-5 pt-3 pb-3" id="selectPaymantMethod" aria-label="Default select example" required>
-                        <option value="1">Gotówka</option>
-                        <option value="2">Karta kredytowa</option>
-                        <option value="3">Karta debetowa</option>
+                     <?php        
+                           foreach( $_SESSION['paymentMethods'] as $option){ 
+                              echo "<option value='$option'>$option</option>";
+                           }             
+                        ?>
                       </select>
                   </div>
                   <div class="mb-3">  
                      <label for="expenseCategory" class="form-label">Wybierz kategorie wydatku</label>
                      <select class="form-select fs-5 pt-3 pb-3" id="expenseCategory" aria-label="Default select example" required>
-                        <option value="food">Jedzenie</option>
-                           <option value="apartment">Mieszkanie</option>
-                           <option value="transportation">Transport</option>
-                           <option value="telecommunication">Telekomunikacja</option>
-                           <option value="healthcare">Opieka zdrowotna</option>
-                           <option value="cloth">Ubranie</option>
-                           <option value="hygiene">Higiena</option>
-                           <option value="kids">Dzieci</option>
-                           <option value="entertainment">Rozrywka</option>
-                           <option value="trip">Wycieczka</option>
-                           <option value="training">Szkolenia</option>
-                           <option value="books">Książki</option>
-                           <option value="savings">Oszczędności</option>
-                           <option value="pension">Na złotą jesień, czyli emeryturę</option>
-                           <option value="debt">Spłata długów</option>
-                           <option value="donation">Darowizna</option>
-                           <option value="another">Inne</option>
+
+                        <?php        
+                           foreach( $_SESSION['expenseCategories'] as $option){ 
+                              echo "<option value='$option'>$option</option>";
+                           }             
+                        ?>
+
                       </select>
                   </div>
                   <button type="submit" id="myButton" class="btn btn-light p-3">Dodaj wydatek</button>
