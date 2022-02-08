@@ -35,22 +35,15 @@ function clearInputs(){
   })
 }
 
- function loadCurrentDate(){
-  var today = new Date();
-  var dd = ("0" + (today.getDate())).slice(-2);
-  var mm = ("0" + (today.getMonth() +　1)).slice(-2);
-  var yyyy = today.getFullYear();
-   today = yyyy + '-' + mm + '-' + dd ;
-   return today;
-}
+//  function loadCurrentDate(){
+//   var today = new Date();
+//   var dd = ("0" + (today.getDate())).slice(-2);
+//   var mm = ("0" + (today.getMonth()+1)).slice(-2);
+//   var yyyy = today.getFullYear();
+//    today = yyyy + '-' + mm + '-' + dd ;
+//    return today;
+// }
 
-function showTodayIncomeDate(){
-  document.getElementById('inputDateIncome').value = loadCurrentDate();
-}
-
-function showTodayExpenseDate(){
-  document.getElementById('inputDateExpense').value = loadCurrentDate();
-}
 
 function clearInputs(){
   let listOfInputs = document.querySelectorAll('input[type="number"], input[type="date"], .select select');
@@ -121,22 +114,24 @@ function showBalance(){
 }
 
 
-function limitDateInput(){
-  var today = new Date();
-  var dd = today.getDate();
-  var mm = today.getMonth() + 1; //January is 0!
-  var yyyy = today.getFullYear();
+// function limitDateInput(){
+//   var today = new Date();
+//   var dd = today.getDate();
+//   var mm = today.getMonth() + 1; //January is 0!
+//   var yyyy = today.getFullYear();
 
-  if (dd < 10) {
-     dd = '0' + dd;
-  } if (mm < 10) {
-     mm = '0' + mm;
-  } 
+//   if (dd < 10) {
+//      dd = '0' + dd;
+//   } if (mm < 10) {
+//      mm = '0' + mm;
+//   } 
      
-  today = yyyy + '-' + mm + '-' + dd;
-  var dateFields = document.querySelectorAll('input[type="date"]');
-  for(var i=0; i < dateFields.length; i++){
-     dateFields[i].setAttribute("max", today);
-  }
-}
+//   today = yyyy + '-' + mm + '-' + dd;
+//   var dateFields = document.querySelectorAll('input[type="date"]');
+//   for(var i=0; i < dateFields.length; i++){
+//      dateFields[i].setAttribute("max", today);
+//   }
+// }
+
+
 

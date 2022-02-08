@@ -11,8 +11,6 @@
       exit();
    }
 
-   //$user_id = $_SESSION['userid'];
-
    //AddingCategories
    $income = new IncomeManager($_SESSION['userid']);
    $income->getUserIncomesCategories();
@@ -30,8 +28,9 @@
    <link rel="stylesheet" href="css/main.min.css">
    <link rel="stylesheet" href="css/custom.css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
+   <script src="js/script.js"></script>
 </head>
-<body onload="showTodayIncomeDate()">
+<body>
 <div class="mainContainer mb-5">
    <!-- navbar -->
    <nav class="navbar navbar-expand-md navbar-light">
@@ -102,20 +101,18 @@
                   <h1 class="text-start">Dodaj przychód</h1>
                </header>
 
-               <form action="#" class="needs-validation" id="addIncomeForm" novalidate>
+               <form action="includes/addIncome.inc.php" method="POST" class="needs-validation" id="addIncomeForm" novalidate>
                   <div class="mb-3 mt-5">
                      <label for="inputIncome1" class="form-label">Podaj kwotę przychodu</label>
-                     <input type="number" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputExpense1" step="any" required>
+                     <input type="number" name="incomeAmount" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputExpense1" step="any" required>
                   </div>
                   <div class="mb-3">
                     <label for="inputDate1" class="form-label">Wprowadź datę przychodu</label>
-                    <input type="date" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputDateIncome" aria-describedby="emailHelp" required>               
+                    <input type="date" name="incomeDate" value="<?php echo date('Y-m-d'); ?>" onclick="limitDateInput()" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputDateIncome" aria-describedby="emailHelp" required>               
                   </div>
                   <div class="mb-3">  
-                     <label for="selectIncomeCategory" class="form-label">Wybierz kategorię</label>
-                     
-                     
-                     <select class="form-select fs-5 pt-3 pb-3" id="selectedIncomeCategory" aria-label="Default select example" required>
+                     <label for="selectIncomeCategory" class="form-label">Wybierz kategorię</label>                   
+                     <select name="incomeCategory" class="form-select fs-5 pt-3 pb-3" id="selectedIncomeCategory" aria-label="Default select example" required>
                   
                      <?php        
                         foreach( $_SESSION['incomesCategories'] as $option){ 
@@ -126,7 +123,7 @@
                      </select>
 
                   </div>
-                  <button type="submit" id="myButton" class="btn btn-light p-3">Dodaj przychód</button>
+                  <button type="submit" name="submitIncome" id="myButton" class="btn btn-light p-3">Dodaj przychód</button>
                   <button type="button" class="btn btn-danger p-3" onclick="clearInputs()">Wyczyść pola</button>
                 </form>
              
