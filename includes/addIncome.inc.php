@@ -10,17 +10,19 @@ if(isset($_POST["submitIncome"])){
     $category = $_POST["incomeCategory"];
     $uID = $_SESSION['userid'];
 
+   //Remember form inputs
+   $_SESSION['fr_amount'] = $amount;
 
-   //Instantiatate SignUpController class
-   // include "../classes/dbh.classes.php";
-   // include "../classes/signup.classes.php";
-   // include "../classes/signup-contr.classes.php";
-   // $signup = new SignupContr($uid, $passwd, $email);
+   //Instantiatate IncomeController class
+   include "../classes/dbh.classes.php";
+   include "../classes/income.classes.php";
+   include "../classes/income-contr.classes.php";
 
+   $income = new IncomeContr($uID, $category, $amount, $date);
+   $income->addUserIncome();
    
    //Running error handlers and user signup
    // $signup->signupUser();
-
 
    //Clearing errors
    // if (isset($_SESSION['e_nick'])) unset($_SESSION['e_nick']);
@@ -28,7 +30,7 @@ if(isset($_POST["submitIncome"])){
    // if (isset($_SESSION['e_passwd'])) unset($_SESSION['e_passwd']);
 
    // Going to destination page
-   header("location: ../addIncome.php?Dodano".$amount.$date.$category);
+   header("location: ../addIncome.php");
 
 } else {
 

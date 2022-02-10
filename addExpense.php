@@ -2,7 +2,7 @@
 
    include "classes/dbh.classes.php";
    include "classes/categories.classes.php";
-   include "classes/expense-manager.classes.php";
+   include "classes/categories-contr.classes.php";
 
    session_start();
 
@@ -11,11 +11,10 @@
       exit();
    }
 
-   //AddingCategories & paymentMethods
-   $expense = new ExpenseManager($_SESSION['userid']);
-   $expense->getUserExpenseCategories();
-   $expense->getUserPaymentMethods();
-
+   //AddingCategories
+   $expenseCategories = new CategoriesContr($_SESSION['userid']);
+   $expenseCategories->getUserExpenseCategories();
+   $expenseCategories->getUserPaymentMethod();
 
 ?>
 
