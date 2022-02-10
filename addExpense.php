@@ -2,7 +2,7 @@
 
    include "classes/dbh.classes.php";
    include "classes/categories.classes.php";
-   include "classes/expense-manager.classes.php";
+   include "classes/categories-contr.classes.php";
 
    session_start();
 
@@ -11,11 +11,10 @@
       exit();
    }
 
-   //AddingCategories & paymentMethods
-   $expense = new ExpenseManager($_SESSION['userid']);
-   $expense->getUserExpenseCategories();
-   $expense->getUserPaymentMethods();
-
+   //AddingCategories
+   $expenseCategories = new CategoriesContr($_SESSION['userid']);
+   $expenseCategories->getUserExpenseCategories();
+   $expenseCategories->getUserPaymentMethod();
 
 ?>
 
@@ -30,7 +29,7 @@
    <link rel="stylesheet" href="css/custom.css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
 </head>
-<body onload="showTodayExpenseDate()">
+<body>
 <div class="mainContainer mb-5">
    <!-- navbar -->
    <nav class="navbar navbar-expand-md navbar-light">
@@ -106,7 +105,7 @@
                   </div>
                   <div class="mb-3">
                     <label for="inputDate1" class="form-label">Wprowadź datę wydatku</label>
-                    <input type="date" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputDateExpense" aria-describedby="emailHelp" required>               
+                    <input type="date" value="<?php echo date('Y-m-d'); ?>" onclick="limitDateInput()" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputDateExpense" aria-describedby="emailHelp" required>               
                   </div>
                   <div class="mb-3">  
                      <label for="selectPaymantMethod" class="form-label">Wybierz metodę płatności</label>
