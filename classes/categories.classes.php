@@ -67,7 +67,7 @@ class Categories extends Dbh {
       }
 
          $paymentMethods = $stmt->fetchAll(PDO::FETCH_ASSOC);
-         $_SESSION['paymentUserMethods'] = $paymentMethods;
+         $_SESSION['paymentUserMet'] = $paymentMethods;
                  
          $stmt = NULL;
    }
