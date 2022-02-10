@@ -98,38 +98,42 @@
                   <h1 class="text-start">Dodaj rozchód</h1>
                </header>
 
-               <form action="#" class="needs-validation" id="addExpenseForm" novalidate>
+               <form action="includes/addExpense.inc.php" method="POST" class="needs-validation" id="addExpenseForm" novalidate>
                   <div class="mb-3 mt-5">
                      <label for="inputExpense1" class="form-label">Podaj kwotę wydatku</label>
-                     <input type="number" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputExpense1" step="any" required>
+                     <input type="number" name="expenseAmount" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputExpense1" step="any" min="0.01" required>
                   </div>
                   <div class="mb-3">
                     <label for="inputDate1" class="form-label">Wprowadź datę wydatku</label>
-                    <input type="date" value="<?php echo date('Y-m-d'); ?>" onclick="limitDateInput()" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputDateExpense" aria-describedby="emailHelp" required>               
+                    <input type="date" name="expenseDate" value="<?php echo date('Y-m-d'); ?>" onclick="limitDateInput()" class="form-control fs-5 pt-3 pb-3 shadow-none" id="inputDateExpense" aria-describedby="emailHelp" required>               
                   </div>
                   <div class="mb-3">  
                      <label for="selectPaymantMethod" class="form-label">Wybierz metodę płatności</label>
-                     <select class="form-select fs-5 pt-3 pb-3" id="selectPaymantMethod" aria-label="Default select example" required>
-                     <?php        
-                           foreach( $_SESSION['paymentMethods'] as $option){ 
-                              echo "<option value='$option'>$option</option>";
-                           }             
-                        ?>
+                     <select class="form-select fs-5 pt-3 pb-3" name="expenseCategory" id="selectPaymantMethod" aria-label="Default select example" required>
+                     <?php
+                        foreach ($_SESSION['expenseUserCat'] as $row) {
+                           ?>      
+                              <option value="<?php echo $row['id']; ?>"> <?php echo $row['name']; ?> </option> 
+                        <?php      
+                        }
+                     ?>
                       </select>
                   </div>
                   <div class="mb-3">  
                      <label for="expenseCategory" class="form-label">Wybierz kategorie wydatku</label>
-                     <select class="form-select fs-5 pt-3 pb-3" id="expenseCategory" aria-label="Default select example" required>
+                     <select class="form-select fs-5 pt-3 pb-3" name="expensePayment" id="expenseCategory" aria-label="Default select example" required>
 
-                        <?php        
-                           foreach( $_SESSION['expenseCategories'] as $option){ 
-                              echo "<option value='$option'>$option</option>";
-                           }             
-                        ?>
+                     <?php
+                        foreach ($_SESSION['paymentUserMet'] as $row) {
+                           ?>      
+                              <option value="<?php echo $row['id']; ?>"> <?php echo $row['name']; ?> </option> 
+                        <?php      
+                        }
+                     ?>
 
                       </select>
                   </div>
-                  <button type="submit" id="myButton" class="btn btn-light p-3">Dodaj wydatek</button>
+                  <button type="submit" name="submitExpense" id="myButton" class="btn btn-light p-3">Dodaj wydatek</button>
                   <button type="button" class="btn btn-danger p-3" onclick="clearInputs()">Wyczyść pola</button>
                 </form>
                 <script src="js/script.js"></script>
