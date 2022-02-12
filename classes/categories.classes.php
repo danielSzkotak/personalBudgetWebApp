@@ -51,7 +51,7 @@ class Categories extends Dbh {
 
    protected function getPaymentMethods($userID){
 
-      $stmt = $this->connect()->prepare('SELECT id, name FROM payment_methods_assigned_to_users WHERE user_id=?;');
+      $stmt = $this->connect()->prepare('SELECT id, name  FROM payment_methods_assigned_to_users WHERE user_id=?;');
       
       if(!$stmt->execute(array($userID))){
          $stmt = null;

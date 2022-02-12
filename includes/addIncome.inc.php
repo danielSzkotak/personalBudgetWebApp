@@ -10,8 +10,11 @@ if(isset($_POST["submitIncome"])){
     $category = $_POST["incomeCategory"];
     $uID = $_SESSION['userid'];
 
-   //Remember form inputs
-   $_SESSION['fr_amount'] = $amount;
+   //Remember form inputs for modal
+   $_SESSION['modal_amount'] = $amount;
+   $_SESSION['modal_date'] = $date;
+   $_SESSION['modal_category'] = $category;
+   
 
    //Instantiatate IncomeController class
    include "../classes/dbh.classes.php";
@@ -29,8 +32,13 @@ if(isset($_POST["submitIncome"])){
    // if (isset($_SESSION['e_email'])) unset($_SESSION['e_email']);
    // if (isset($_SESSION['e_passwd'])) unset($_SESSION['e_passwd']);
 
+   //Set cuccess session variable
+   $_SESSION['inputSuccess'] = true;
+
+
    // Going to destination page
    header("location: ../addIncome.php");
+   
 
 } else {
 
