@@ -129,7 +129,7 @@ $incomeCategories->getUserIncomesCategories();
                            <?php
                            foreach ($_SESSION['incomeUserCat'] as $row) {
                            ?>
-                              <option value="<?php echo $row['id']; ?>"> <?php echo $row['name']; ?> </option>
+                              <option value="<?php echo $row['id'].'|'.$row['name']; ?>"> <?php echo $row['name']; ?> </option>
                            <?php
                            }
                            ?>
@@ -138,7 +138,7 @@ $incomeCategories->getUserIncomesCategories();
 
                      <!-- Modal -->
                      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
+                        <div class="modal-dialog modal-dialog-centered">
                            <div class="modal-content">
                               <div class="modal-header">
                                  <h4 class="modal-title text-success" id="exampleModalLabel">Dodano przychód</h5>
@@ -146,10 +146,11 @@ $incomeCategories->getUserIncomesCategories();
                               </div>
                               <div class="modal-body">
 
-                              <h5 class="text-start">Data przychodu: <?php if(isset($_SESSION['modal_date'])) echo $_SESSION['modal_date']; unset($_SESSION['modal_date']);?></h5>
+                              <h5 class="text-start">Data: <?php if(isset($_SESSION['modal_date'])) echo $_SESSION['modal_date']; unset($_SESSION['modal_date']);?></h5>
 
+                              <h5 class="text-start">Kategoria: <?php if(isset($_SESSION['modal_categoryName'])) echo $_SESSION['modal_categoryName']; unset($_SESSION['modal_categoryName']);?></h5>
 
-                                <h5 class="text-start">Kwota przychodu: <?php if(isset($_SESSION['modal_amount'])) echo $_SESSION['modal_amount']; unset($_SESSION['modal_amount']);?></h5>
+                              <h5 class="text-start">Kwota: <?php if(isset($_SESSION['modal_amount'])) echo $_SESSION['modal_amount'].' zł'; unset($_SESSION['modal_amount']);?></h5>
 
                               </div>
                               <div class="modal-footer">
@@ -160,12 +161,10 @@ $incomeCategories->getUserIncomesCategories();
                      </div>              
                      <!-- End of Modal -->
 
-                     <button type="submit" name="submitIncome" id="myButton" class="btn btn-light p-3" data-bs-toggle="modal">Dodaj przychód modal</button>
-
+                     <button type="submit" name="submitIncome" id="myButton" class="btn btn-light p-3" data-bs-toggle="modal">Dodaj przychód</button>
 
                      <button type="button" class="btn btn-danger p-3" onclick="clearInputs()">Wyczyść pola</button>
 
-                           
                   </form>
 
                   <script src="js/script.js"></script>

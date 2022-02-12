@@ -7,13 +7,19 @@ if(isset($_POST["submitIncome"])){
    //Grabbing the data
     $amount = $_POST["incomeAmount"];
     $date = $_POST["incomeDate"];
-    $category = $_POST["incomeCategory"];
     $uID = $_SESSION['userid'];
 
+         //Fetch id and name from category
+         $categoryFetch = explode('|', $_POST["incomeCategory"]);
+         $categoryID = $categoryFetch[0];
+         $categoryName = $categoryFetch[1];
+      
+    $uID = $_SESSION['userid'];
+   
    //Remember form inputs for modal
-   $_SESSION['modal_amount'] = $amount;
-   $_SESSION['modal_date'] = $date;
-   $_SESSION['modal_category'] = $category;
+   $_SESSION['modal_amount'] = number_format($amount, 2, '.', ',');
+   $_SESSION['modal_date'] = date("d-m-Y", strtotime($date));
+   $_SESSION['modal_categoryName'] = $categoryName;
    
 
    //Instantiatate IncomeController class
@@ -21,7 +27,7 @@ if(isset($_POST["submitIncome"])){
    include "../classes/income.classes.php";
    include "../classes/income-contr.classes.php";
 
-   $income = new IncomeContr($uID, $category, $amount, $date);
+   $income = new IncomeContr($uID, $categoryID, $amount, $date);
    $income->addUserIncome();
    
    //Running error handlers and user signup
