@@ -28,6 +28,19 @@
    <link rel="stylesheet" href="css/main.min.css">
    <link rel="stylesheet" href="css/custom.css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+   <?php if(isset($_SESSION['inputExpenseSuccess'])){
+      echo "
+      <script>
+      $(document).ready(function(){
+         $('#exampleModal').modal('show');
+      });
+      </script>";
+      unset ($_SESSION['inputExpenseSuccess']);
+   }
+   ?>
+
 </head>
 <body>
 <div class="mainContainer mb-5">
@@ -113,7 +126,7 @@
                      <?php
                         foreach ($_SESSION['expenseUserCat'] as $row) {
                            ?>      
-                              <option value="<?php echo $row['id']; ?>"> <?php echo $row['name']; ?> </option> 
+                              <option value="<?php echo $row['id'].'|'.$row['name']; ?>"> <?php echo $row['name']; ?> </option> 
                         <?php      
                         }
                      ?>
@@ -126,14 +139,40 @@
                      <?php
                         foreach ($_SESSION['paymentUserMet'] as $row) {
                            ?>      
-                              <option value="<?php echo $row['id']; ?>"> <?php echo $row['name']; ?> </option> 
+                              <option value="<?php echo $row['id'].'|'.$row['name']; ?>"> <?php echo $row['name']; ?> </option> 
                         <?php      
                         }
                      ?>
 
                       </select>
+                      <!-- Modal -->
+                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                           <div class="modal-content">
+                              <div class="modal-header">
+                                 <h4 class="modal-title text-success" id="exampleModalLabel">Dodano rozchód</h5>
+                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+
+                              <h5 class="text-start">Data: <?php if(isset($_SESSION['modal_date'])) echo $_SESSION['modal_date']; unset($_SESSION['modal_date']);?></h5>
+
+                              <h5 class="text-start">Kategoria: <?php if(isset($_SESSION['modal_categoryName'])) echo $_SESSION['modal_categoryName']; unset($_SESSION['modal_categoryName']);?></h5>
+
+                              <h5 class="text-start">Sposób płatności: <?php if(isset($_SESSION['modal_paymentName'])) echo $_SESSION['modal_paymentName']; unset($_SESSION['modal_paymentName']);?></h5>
+
+                              <h5 class="text-start">Kwota: <?php if(isset($_SESSION['modal_amount'])) echo $_SESSION['modal_amount'].' zł'; unset($_SESSION['modal_amount']);?></h5>
+
+                              </div>
+                              <div class="modal-footer">
+                                 <button type="button" class="btn btn-success" data-bs-dismiss="modal">Zamknij</button>                
+                              </div>
+                           </div>
+                        </div>
+                     </div>              
+                     <!-- End of Modal -->
                   </div>
-                  <button type="submit" name="submitExpense" id="myButton" class="btn btn-light p-3">Dodaj wydatek</button>
+                  <button type="submit" name="submitExpense" id="myButton" class="btn btn-light p-3" data-bs-toggle="modal">Dodaj wydatek</button>
                   <button type="button" class="btn btn-danger p-3" onclick="clearInputs()">Wyczyść pola</button>
                 </form>
                 <script src="js/script.js"></script>
