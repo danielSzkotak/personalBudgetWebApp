@@ -38,7 +38,7 @@ if(isset($_POST["submitIncome"])){
    // if (isset($_SESSION['e_email'])) unset($_SESSION['e_email']);
    // if (isset($_SESSION['e_passwd'])) unset($_SESSION['e_passwd']);
 
-   //Set cuccess session variable
+   //Set success session variable
    $_SESSION['inputSuccess'] = true;
 
 
