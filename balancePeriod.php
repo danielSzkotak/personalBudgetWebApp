@@ -102,9 +102,9 @@ if (!isset($_SESSION['useruid'])) {
                         <label for="selectBalancePeriod" class="form-label">Wybierz okres</label>
                         <select name="balancePeriod" class="form-select fs-5 pt-3 pb-3" id="selectedBalancePeriod"
                            onchange="showDateInputs()" aria-label="Default select example" required>
-                           <option value="currentMonth">Bieżący miesiąc</option>
-                           <option value="previousMonth">Poprzedni miesiąc</option>
-                           <option value="currentYear">Bieżacy rok</option>
+                           <option value="bieżący miesiąc">Bieżący miesiąc</option>
+                           <option value="poprzedni miesiąc">Poprzedni miesiąc</option>
+                           <option value="bieżący rok">Bieżacy rok</option>
                            <option value="non-standardPeriod">Niestandardowy</option>
                         </select>
                      </div>
@@ -130,32 +130,51 @@ if (!isset($_SESSION['useruid'])) {
          
          <div class="container-xxl mt-5">         
             
-            <!-- <section id="tables">
-               <header>
-                  <h1 class="text-start" id="selectedPeriodParagraph"></h1>
-               </header>
-            </section> -->
-
+           <!-- Creating balance table -->
             <?php
-
-               if(isset($_SESSION['noResultFromBilans'])){
+               if(isset($_SESSION['noResultFromBalance'])){
                   echo "<h2>Brak wyników dla wybranego okresu</h2>";
-                  unset ($_SESSION['noResultFromBilans']);
-               } else if(isset($_SESSION['currentMonthBalance'])){               
-               
-                  echo "<pre>";
-                  echo "Bieżący miesiąc";
-                  foreach ( $_SESSION['currentMonthBalance'] as $var ) {
-                     echo "\n", $var['name'], "\t\t", $var['category_sum'];
-                  }                
-                  unset($_SESSION['currentMonthBalance']);
-                 }
-               
-            ?>  
+                  unset($_SESSION['noResultFromBalance']);
 
-               
+               } else if(isset($_SESSION['balance'])){    
+                                                                   
+                   echo  "<h1 class='text-start' id='selectedPeriodParagraph'>Bilans za ". $_SESSION['selectedValue']. "</h1>";
+
+                   echo <<<EOD
+                     <table class="table table-striped mb-5">
+                     <thead class="fs-4">
+                        <tr>
+                           <th scope="col">Przychody</th>
+                           <th scope="col">Suma [zł]</th>
+                        </tr>
+                     </thead>
+                     <tbody class="fs-5">
+                        <tr>
+                   EOD;
+                     
+                     foreach ($_SESSION['balance'] as $var){
+                      
+                        echo "<td>".$var['name']." </td>";
+                        echo "<td>".$var['category_sum']." </td>";
+                        echo "</tr>";   
+                     }
+
+                      echo "</tbody>";
+
+                      echo "<tr class='bg-light fs-4'>";
+                        echo "<th>Suma przychodów</th>";
+                        echo "<th>".$_SESSION['total'][0]."</th>";
+                      echo "</tr>";
+                      echo "</table>"; 
+                        
+                      unset($_SESSION['balance']);
+                      unset($_SESSION['total']);
+                    
+               } 
+                        
+            ?> 
+
          </div>    
-         
          <footer>
             <div class="container-fluid my-5 text-white text-center pt-5 pb-5 bg-dark">
                <p class="fs-1 fw-bold">Profesjonalnie buduj swój kapitał osobisty!</p>
@@ -170,13 +189,6 @@ if (!isset($_SESSION['useruid'])) {
    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"></script>
-      <?php
-               if(isset($_SESSION['currentMonthBalance'])){
-                  echo 'Pupencja';
-                  unset($_SESSION['currentMonthBalance']);
-               }
-               ?>  
-           
+          
 </body>
-
 </html>

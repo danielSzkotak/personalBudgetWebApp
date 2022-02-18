@@ -4,19 +4,31 @@ session_start();
 
 if(isset($_POST["submitBalance"])){
 
-   //Grabbing the data
-    $uID = $_SESSION['userid'];
-
-         
-   //Remember form inputs for modal
-   
    //Instantiatate IncomeController class
    include "../classes/dbh.classes.php";
    include "../classes/balance.classes.php";
    include "../classes/balance-contr.classes.php";
 
-   $balance = new BalanceContr($uID);
-   $balance->showCurrentMonthBalance();
+   $uID = $_SESSION['userid'];
+   
+   //Grabbing the data
+      $_SESSION['selectedValue'] = $_POST['balancePeriod'];
+      
+      if($_SESSION['selectedValue'] == 'bieżący miesiąc'){
+         $balance = new BalanceContr($uID);
+         $balance->showCurrentMonthBalance();
+      } else if ($_SESSION['selectedValue'] == 'poprzedni miesiąc'){
+         $balance = new BalanceContr($uID);
+         $balance->showPreviousMonthBalance();
+      } else if ($_SESSION['selectedValue'] == 'bieżący rok'){
+         $balance = new BalanceContr($uID);
+         $balance->showCurrentYearBalance();
+      }
+      
+      
+   
+
+  
    
    //Running error handlers and user signup
    // $signup->signupUser();
@@ -27,7 +39,6 @@ if(isset($_POST["submitBalance"])){
    // if (isset($_SESSION['e_passwd'])) unset($_SESSION['e_passwd']);
 
    //Set success session variable
-   $_SESSION['xxx'] = true;
 
    // Going to destination page
    header("location: ../balancePeriod.php");

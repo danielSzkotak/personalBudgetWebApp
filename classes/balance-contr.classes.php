@@ -16,6 +16,21 @@ class BalanceContr extends Balance{
    public function showCurrentMonthBalance(){
 
       $this->getCurrentMonthBalance($this->uID);
+      $this->getCurrentMonthSum($this->uID);
+    
+   }
+
+   public function showPreviousMonthBalance(){
+
+      $this->getPreviousMonthBalance($this->uID);
+      $this->getPrevioustMonthSum($this->uID);
+    
+   }
+
+   public function showCurrentYearBalance(){
+
+      $this->getCurrentYearBalance($this->uID);
+      $this->getCurrentYearSum($this->uID);
     
    }
 
