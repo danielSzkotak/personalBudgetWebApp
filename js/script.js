@@ -54,7 +54,8 @@ function clearInputs(){
 
 function showDateInputs(){
   const myValue = document.getElementById("selectedBalancePeriod").value;
-
+ 
+  
   if(myValue == "non-standardPeriod"){
       document.getElementById("selectPeriodId").style.display = "grid";
       document.getElementById("startDate1").style.border = "1px solid #b3b3b3";
@@ -68,18 +69,11 @@ function showDateInputs(){
 
 function showBalance(){
 
-  var myValue = document.getElementById("selectedBalancePeriod").value;
-  var wrongDates = document.getElementById("wrongDates");
-  var standardPeriodInputFlag = false;
-
-  if (myValue != "non-standardPeriod") {
-     standardPeriodInputFlag = true;
-     document.getElementById("selectedPeriodParagraph").innerHTML = "Bilans za " + myValue;
-  }
-  else {
     var startDate = document.getElementById("startDate1");
     var endDate = document.getElementById("endDate1");
-    wrongDates.style.display = "grid";  
+
+    wrongDates.style.display = "grid"; 
+
       if(startDate.value == "" && endDate.value == ""){
         document.getElementById("wrongDates").innerHTML = "Pola z datmi nie mogą być puste";
         startDate.style.border = "2px solid red";
@@ -95,23 +89,11 @@ function showBalance(){
     } else if((startDate.value > endDate.value) && (startDate.value != "" || endDate.value != "")) {
         startDate.style.border = "2px solid red";
         document.getElementById("wrongDates").innerHTML = "Pierwsza data nie może być większa od drugiej";    
-    } else {      
-
-      standardPeriodInputFlag = true;
-       const reversedStartDate = (startDate.value).split("-").reverse().join("-");
-       const reversedEndDate = (endDate.value).split("-").reverse().join("-");
-       startDate.style.border = "2px solid #8db856";
-       endDate.style.border = "2px solid #8db856";
+    }     
        document.getElementById("selectedPeriodParagraph").innerHTML = "Bilans od " + reversedStartDate + " do " + reversedEndDate;
-    }
-  }
- 
-  if(standardPeriodInputFlag == true){
-    wrongDates.style.display = "none";
-    document.getElementById("showBalanceContainer").style.display = "grid";
-   // document.getElementById("chart_wrap").style.display = "grid";
-  }
+  
 }
+
 
 
 // function limitDateInput(){

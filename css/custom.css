@@ -37,15 +37,6 @@ form .btn
    }
 }
 
-.btn:hover,
-.btn:active {
-  background: #a0cf67 !important;
-}
-
-.btn-danger:hover,
-.btn-danger:active {
-   background: #a72d0f !important;
-}
 
 #main h1{
    font-family: 'Encode Sans', sans-serif;
@@ -64,6 +55,7 @@ form .btn
 ul.text-start{
    padding-left: 0;
 }
+
 
 #main li{
    display: inline-block;
@@ -137,7 +129,7 @@ label{
 
 .dupa a{
    text-decoration: none;
-   opacity: 0.9;
+   opacity: 0.95;
 }
 
 .dupa a:hover{
@@ -149,7 +141,7 @@ table th{
 }
 
 #showBalanceContainer{
-   display: none;
+   /* display: none; */
 }
 
 .selectPeriod {
@@ -160,6 +152,4 @@ table th{
    color: rgb(85, 144, 85);
    display: none;
 }
-
-
 
