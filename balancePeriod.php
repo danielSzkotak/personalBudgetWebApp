@@ -1,14 +1,11 @@
 <?php
-
 session_start();
 
 if (!isset($_SESSION['useruid'])) {
    header('Location: login.php');
    exit();
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -20,15 +17,70 @@ if (!isset($_SESSION['useruid'])) {
    <link rel="stylesheet" href="css/main.min.css">
    <link rel="stylesheet" href="css/custom.css">
    <link rel="stylesheet" href="css/fontello.css" type="text/css">
-   <script src="https://www.gstatic.com/charts/loader.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-   <script src="js/throttledresize.js"></script>
-   <script src="js/charts.js"></script>
+   <script src="https://www.gstatic.com/charts/loader.js"></script>
    <script src="js/script.js"></script>
 
+   <script>
+      // Load google charts
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawIncomesChart);
+      google.charts.setOnLoadCallback(drawExpensesChart);
+      
+      function drawIncomesChart() {
+         var data1 = google.visualization.arrayToDataTable([
+         ['Przychody', 'suma'],
+         <?php      
+         if(isset($_SESSION['incomesBalance'])) {         
+            foreach ($_SESSION['incomesBalance'] as $var){       
+               echo "['".$var['name']."',".$var['category_sum']."],"; 
+            }   
+         }
+         ?>
+         ]);
+            // Optional; add a title and set the width and height of the chart
+            var options1 = {width: '500', height: '500', backgroundColor: 'transparent',
+            title: 'Przychody'
+         };
+            // Display the chart inside the <div> element with id="piechart"
+
+               var chart1 = new google.visualization.PieChart(document.getElementById('piechart1'));
+               <?php
+                 if(isset($_SESSION['incomesBalance'])){
+                    echo "chart1.draw(data1, options1);";
+                 }
+               ?>
+            
+      };
+      
+      function drawExpensesChart() {
+         var data1 = google.visualization.arrayToDataTable([
+         ['Wydatki', 'suma'],
+         <?php    
+         if(isset($_SESSION['expensesBalance'])){            
+            foreach ($_SESSION['expensesBalance'] as $var){       
+               echo "['".$var['name']."',".$var['category_sum']."],"; 
+            }   
+         }
+         ?>
+         ]);
+            // Optional; add a title and set the width and height of the chart
+            var options1 = {width: '500', height: '500', backgroundColor: 'transparent',
+            title: 'Wydatki'
+         };
+            // Display the chart inside the <div> element with id="piechart"
+            
+               var chart1 = new google.visualization.PieChart(document.getElementById('piechart2'));
+               <?php
+                  if(isset($_SESSION['expensesBalance'])){
+                     echo "chart1.draw(data1, options1);";
+                  }
+               ?>
+      };
+   </script>
 </head>
 
-<body onload="limitDateInput()">
+<body>
    <div class="mainContainer mb-5">
       <!-- navbar -->
       <nav class="navbar navbar-expand-md navbar-light">
@@ -87,7 +139,7 @@ if (!isset($_SESSION['useruid'])) {
                      </a>
                      <a href="addExpense.php"
                         class="col bg-secondary mb-2 me-2 p-5 rounded-3 text-center text-white text-nowrap fs-2">
-                        Dodaj rozchód
+                        Dodaj wydatek
                      </a>
                   </div>
                </div>
@@ -102,25 +154,88 @@ if (!isset($_SESSION['useruid'])) {
                         <label for="selectBalancePeriod" class="form-label">Wybierz okres</label>
                         <select name="balancePeriod" class="form-select fs-5 pt-3 pb-3" id="selectedBalancePeriod"
                            onchange="showDateInputs()" aria-label="Default select example" required>
-                           <option value="bieżący miesiąc">Bieżący miesiąc</option>
-                           <option value="poprzedni miesiąc">Poprzedni miesiąc</option>
-                           <option value="bieżący rok">Bieżacy rok</option>
-                           <option value="non-standardPeriod">Niestandardowy</option>
+                           <option value="bieżący miesiąc" <?php if(isset($_SESSION['selectedValue'])){
+                              if($_SESSION['selectedValue'] == 'poprzedni miesiąc'){
+                             echo 'selected';     
+                           }                      
+                     } ?>>Bieżący miesiąc</option>
+                           <option value="poprzedni miesiąc" <?php if(isset($_SESSION['selectedValue'])){
+                              if($_SESSION['selectedValue'] == 'poprzedni miesiąc'){
+                                echo 'selected';                           
+                              }
+                     } ?>>Poprzedni miesiąc</option>
+                           <option value="bieżący rok" <?php if(isset($_SESSION['selectedValue'])){
+                              if($_SESSION['selectedValue'] == 'bieżący rok'){
+                                echo 'selected';                           
+                              }
+                     } ?>>Bieżacy rok</option>
+                           <option value="non-standardPeriod" <?php if(isset($_SESSION['selectedValue'])){
+                              if($_SESSION['selectedValue'] == 'non-standardPeriod'){
+                                echo 'selected';                                                
+                              }
+                     } ?>>Niestandardowy</option>
                         </select>
                      </div>
 
                      <div class="mb-3">
-                        <div class="selectPeriod" id="selectPeriodId">
+                        <div class="selectPeriod" id="selectPeriodId" style="<?php 
+                          
+                          if($_SESSION['selectedValue'] == 'non-standardPeriod'){
+                           echo 'display: grid;';
+                          }
+                           if(isset($_SESSION['dates_error'])) {
+                              echo 'display: grid;';
+                           } 
+                           // if(((isset($_SESSION['noResultFromIncomesBalance'])) && (isset($_SESSION['noResultFromExpensesBalance']))) && (isset($_SESSION['dates_ok']))){
+                           //    echo 'display: grid;';
+                           //    unset($_SESSION['dates_ok']); 
+                           // } 
+                           if((isset($_SESSION['dates_ok']))){
+                              echo 'display: grid;'; 
+                              unset($_SESSION['dates_ok']); 
+                           } 
+                           if(isset($_SESSION['startDate'])) {
+                              echo 'display: grid;'; 
+                              unset($_SESSION['startDate']); 
+                              unset($_SESSION['endDate']); 
+                              unset($_SESSION['dates_ok']);
+                           }  
+                        ?>">
                            <label for="startDate1" class="form-label mt-3">Wybierz datę początkową</label>
-                           <input class="form-control fs-5 pt-3 pb-3 shadow-none mb-3" type="date" name="startDate"
-                              id="startDate1">
+                           <input class="form-control fs-5 pt-3 pb-3 shadow-none mb-3 <?php
+                              if(isset($_SESSION['dates_error'])) {
+                                 echo 'is-invalid';
+                              }
+                           ?>" type="date" name="startDate"
+                              id="startDate1" value="<?php if(isset($_SESSION['startDateSelected'])){
+                        echo $_SESSION['startDateSelected'];
+                        unset($_SESSION['startDateSelected']);
+                     }  else {echo date('Y-m-d');}?>">
                            <label for="endDate1" class="form-label">Wybierz datę końcową</label>
-                           <input class="form-control fs-5 pt-3 pb-3 shadow-none" type="date" name="endDate"
-                              id="endDate1">
+                           <input class="form-control fs-5 pt-3 pb-3 shadow-none <?php
+                              if(isset($_SESSION['dates_error'])) {
+                                 echo 'is-invalid';
+                              }
+                           ?>" type="date" name="endDate" id="endDate1" value="<?php if(isset($_SESSION['endDateSelected'])){
+                              echo $_SESSION['endDateSelected'];
+                              unset($_SESSION['endDateSelected']);
+                           } else {echo date('Y-m-d');} ?>">
+
+                              <div class="invalid-feedback">
+                              <?php
+                                 if(isset($_SESSION['dates_error'])) {
+                                                                                          
+                                    echo 'Wprowadź poprawne daty';
+                                    unset($_SESSION['dates_error']);
+                                 }
+                              ?>
+                              </div> 
+
                            <p class="mt-3 text-danger" id="wrongDates"></p>
                         </div>
                      </div>
                      <button type="submit" name="submitBalance" value="submitBalance" class="btn btn-light p-4">Pokaż bilans</button>
+                     <a href="#" id="cos" name="settings" class="btn btn-warning py-4 px-2">Ustawienia</a>
                      <script src="js/script.js"></script>
                   </form>
 
@@ -128,18 +243,28 @@ if (!isset($_SESSION['useruid'])) {
             </div>
          </div>
          
-         <div class="container-xxl mt-5">         
+         <div class="container-xxl mt-5" id="balanceContainer">         
             
            <!-- Creating balance table -->
             <?php
-               if(isset($_SESSION['noResultFromBalance'])){
-                  echo "<h2>Brak wyników dla wybranego okresu</h2>";
-                  unset($_SESSION['noResultFromBalance']);
+               if((isset($_SESSION['noResultFromIncomesBalance']) && (isset($_SESSION['noResultFromExpensesBalance'])))){
+                  echo "<h1>Brak wyników dla wybranego okresu</h1>";
+                  unset($_SESSION['noResultFromIncomesBalance']);
+                  unset($_SESSION['noResultFromExpensesBalance']);
 
-               } else if(isset($_SESSION['balance'])){    
+               } else if((isset($_SESSION['incomesBalance']) || (isset($_SESSION['expensesBalance'])))){ 
+                  
+                  if($_SESSION['selectedValue'] == 'non-standardPeriod'){
+
+                     echo  "<h1 class='text-start' id='selectedPeriodParagraph'>Bilans za wybrany okres</h1>";                                                                      
+                  } else {
+
+                     echo  "<h1 class='text-start' id='selectedPeriodParagraph'>Bilans za ". $_SESSION['selectedValue']. "</h1>";
+
+                  }
+
+                  if(isset($_SESSION['incomesBalance'])){
                                                                    
-                   echo  "<h1 class='text-start' id='selectedPeriodParagraph'>Bilans za ". $_SESSION['selectedValue']. "</h1>";
-
                    echo <<<EOD
                      <table class="table table-striped mb-5">
                      <thead class="fs-4">
@@ -152,7 +277,7 @@ if (!isset($_SESSION['useruid'])) {
                         <tr>
                    EOD;
                      
-                     foreach ($_SESSION['balance'] as $var){
+                     foreach ($_SESSION['incomesBalance'] as $var){
                       
                         echo "<td>".$var['name']." </td>";
                         echo "<td>".$var['category_sum']." </td>";
@@ -160,27 +285,99 @@ if (!isset($_SESSION['useruid'])) {
                      }
 
                       echo "</tbody>";
-
                       echo "<tr class='bg-light fs-4'>";
                         echo "<th>Suma przychodów</th>";
-                        echo "<th>".$_SESSION['total'][0]."</th>";
+                        echo "<th>".$_SESSION['totalIncomes'][0]."</th>";
                       echo "</tr>";
-                      echo "</table>"; 
+                      echo "</table>";                        
                         
-                      unset($_SESSION['balance']);
-                      unset($_SESSION['total']);
-                    
-               } 
-                        
-            ?> 
+                  }   
 
+                  if(isset($_SESSION['expensesBalance'])){
+                                                                                     
+                     echo <<<EOD
+                       <table class="table table-striped mb-5">
+                       <thead class="fs-4">
+                          <tr>
+                             <th scope="col">Wydatki</th>
+                             <th scope="col">Suma [zł]</th>                           
+                          </tr>
+                       </thead>
+                       <tbody class="fs-5">
+                          <tr>
+                     EOD;
+                       
+                       foreach ($_SESSION['expensesBalance'] as $var){
+                        
+                          echo "<td>".$var['name']." </td>";
+                          echo "<td>".($var['category_sum']) ." </td>";                        
+                          echo "</tr>";   
+                       }
+  
+                        echo "</tbody>";
+                        echo "<tr class='bg-secondary fs-4'>";
+                          echo "<th>Suma wydatków</th>";
+                          echo "<th>".$_SESSION['totalExpenses'][0]."</th>";
+                        echo "</tr>";
+                        echo "</table>"; 
+                  }
+
+
+                        echo <<<EOD
+                        <header>
+                        <h1 class="text-start">Bilans podsumowanie</h1>
+                        </header>
+                        <table class="table mb-5">
+                        <thead>
+                        <tr>
+                           <th></th>
+                           <th></th>
+                        </tr>
+                        </thead>
+                        <tbody class="fs-4">
+                        <tr class="bg-info">
+                        <th>Twój bilans</th>
+                        EOD;
+
+                        function formatPositiveNum($num){
+                           return sprintf("%+d",$num); 
+                        }
+                           
+                        $balanceAmount = formatPositiveNum($_SESSION['totalIncomes'][0] - $_SESSION['totalExpenses'][0]);                 
+
+                        echo "<th>". $balanceAmount. " zł</th>";
+                        echo "</tr>";
+                        echo "</tbody>";
+                        echo "</table>";                                   
+                    }              
+                           echo <<<EOD
+                           <div class="row">
+                              <div class="col">
+                                 <div id="piechart1"></div>          
+                              </div>      
+                                                            
+                              <div class="col">
+                                 <div id="piechart2"></div>          
+                              </div>      
+                           </div>                            
+                           EOD; 
+
+                        unset($_SESSION['totalExpenses']);  
+                        unset($_SESSION['totalIncomes']); 
+                        unset($_SESSION['incomesBalance']); 
+                        unset($_SESSION['expensesBalance']);
+                        unset($_SESSION['noResultFromIncomesBalance']);
+                        unset($_SESSION['noResultFromExpensesBalance']);
+                                                            
+            ?> 
+                 
          </div>    
          <footer>
             <div class="container-fluid my-5 text-white text-center pt-5 pb-5 bg-dark">
                <p class="fs-1 fw-bold">Profesjonalnie buduj swój kapitał osobisty!</p>
             </div>
             <div class="my-5">
-               <h5 class="text-center fs-6">© 2021 Twój budżet osobisty. All rights reserved.</h5>
+               <h5 class="text-center fs-6">© 2022 Twój budżet osobisty. All rights reserved.</h5>
             </div>
          </footer>
       </section>

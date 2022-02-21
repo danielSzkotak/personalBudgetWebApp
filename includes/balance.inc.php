@@ -23,12 +23,24 @@ if(isset($_POST["submitBalance"])){
       } else if ($_SESSION['selectedValue'] == 'bieżący rok'){
          $balance = new BalanceContr($uID);
          $balance->showCurrentYearBalance();
+      } else if ($_SESSION['selectedValue'] == 'non-standardPeriod'){
+
+
+         //Handle ivalid date inputs
+         if(($_POST['startDate'] == null) || ($_POST['endDate'] == null) || ($_POST['startDate']>$_POST['endDate'])) {
+            $_SESSION['dates_error'] = true;
+            $_SESSION['startDateSelected'] = $_POST['startDate'];
+            $_SESSION['endDateSelected'] = $_POST['endDate'];
+         } else {
+            $_SESSION['startDateSelected'] = $_POST['startDate'];
+            $_SESSION['endDateSelected'] = $_POST['endDate'];
+            $_SESSION['dates_ok'] = true;
+            $balance = new BalanceContr($uID, $_POST['startDate'], $_POST['endDate']);
+            $balance->showCustomDatesBalance();
+            
+         }
       }
       
-      
-   
-
-  
    
    //Running error handlers and user signup
    // $signup->signupUser();

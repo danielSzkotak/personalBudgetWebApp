@@ -15,22 +15,38 @@ class BalanceContr extends Balance{
 
    public function showCurrentMonthBalance(){
 
-      $this->getCurrentMonthBalance($this->uID);
-      $this->getCurrentMonthSum($this->uID);
+      $this->getCurrentMonthIncomesBalance($this->uID);
+      $this->getCurrentMonthIncomesSum($this->uID);
+      $this->getCurrentMonthExpensesBalance($this->uID);
+      $this->getCurrentMonthExpensesSum($this->uID);
     
    }
 
    public function showPreviousMonthBalance(){
 
-      $this->getPreviousMonthBalance($this->uID);
-      $this->getPrevioustMonthSum($this->uID);
+      $this->getPreviousMonthIncomesBalance($this->uID);
+      $this->getPrevioustMonthIncomesSum($this->uID);
+      $this->getPreviousMonthExpensesBalance($this->uID);
+      $this->getPrevioustMonthExpensesSum($this->uID);
     
    }
 
    public function showCurrentYearBalance(){
 
-      $this->getCurrentYearBalance($this->uID);
-      $this->getCurrentYearSum($this->uID);
+      $this->getCurrentYearIncomesBalance($this->uID);
+      $this->getCurrentYearIncomesSum($this->uID);
+      $this->getCurrentYearExpensesBalance($this->uID);
+      $this->getCurrentYearExpensesSum($this->uID);
+    
+   }
+
+   public function showCustomDatesBalance(){
+
+      $this->getCustomDatesIncomesBalance($this->uID, $this->startDate, $this->endDate);
+      $this->getCustomDatesIncomesSum($this->uID, $this->startDate, $this->endDate);
+      $this->getCustomDatesExpensesBalance($this->uID, $this->startDate, $this->endDate);
+      $this->getCustomDatesExpensesSum($this->uID, $this->startDate, $this->endDate);
+     
     
    }
 
