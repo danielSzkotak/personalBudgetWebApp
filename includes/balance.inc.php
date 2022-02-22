@@ -41,16 +41,6 @@ if(isset($_POST["submitBalance"])){
          }
       }
       
-   
-   //Running error handlers and user signup
-   // $signup->signupUser();
-
-   //Clearing errors
-   // if (isset($_SESSION['e_nick'])) unset($_SESSION['e_nick']);
-   // if (isset($_SESSION['e_email'])) unset($_SESSION['e_email']);
-   // if (isset($_SESSION['e_passwd'])) unset($_SESSION['e_passwd']);
-
-   //Set success session variable
 
    // Going to destination page
    header("location: ../balancePeriod.php");

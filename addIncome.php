@@ -48,7 +48,7 @@ $incomeCategories->getUserIncomesCategories();
       <!-- navbar -->
       <nav class="navbar navbar-expand-md navbar-light">
          <div class="container-xxl p-2 mt-2 mb-5">
-            <a href="#" class="navbar-brand">
+            <a href="index.php" class="navbar-brand">
                <img src="img/budget.png" alt="" width="100" height="100" class="d-inline-block align-text-bottom">
                <span class="text-primary display-2">
                   twój <span class="text-success">budżet</span>
