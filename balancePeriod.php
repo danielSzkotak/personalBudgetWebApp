@@ -340,7 +340,7 @@ if (!isset($_SESSION['useruid'])) {
                         EOD;
 
                         function formatPositiveNum($num){
-                           return sprintf("%+d",$num); 
+                           return number_format((float)$num, 2, '.', '');
                         }
                            
                         $balanceAmount = formatPositiveNum($_SESSION['totalIncomes'][0] - $_SESSION['totalExpenses'][0]);                 
